@@ -8,12 +8,10 @@ import { fetchProject, extractSlugFromUrl, getImageUrl, getPictures, getLinks, t
 export async function getStaticPaths() {
   const allAwards = getAllProjects();
   
-  // Extract all slugs
   const slugs = allAwards
     .map(award => extractSlugFromUrl(award.url))
     .filter((slug): slug is string => slug !== null);
   
-  // Fetch all projects in parallel at build time
   const paths = await Promise.all(
     slugs.map(async (slug) => {
       const project = await fetchProject(slug);
@@ -28,7 +26,6 @@ export async function getStaticPaths() {
     })
   );
   
-  // Filter out null entries (projects that don't exist)
   return paths.filter((p): p is NonNullable<typeof p> => p !== null);
 }
 
@@ -43,11 +40,10 @@ const awards = getProjectBySlug(slug!);
 const favicon = getImageUrl(project._favicon);
 const coverImg = getImageUrl(project._cover_img);
 const pictures = getPictures(project.pictures);
-const links = getLinks(project.links);
+const rawLinks = getLinks(project.links);
 const builders = project.builders || [];
 const hashtags = project.hashtags?.map((h) => h.hashtag.name) || [];
 const totalUSD = awards?.totalUSD || 0;
-const sponsors = [...new Set(awards?.awards.map((a) => a.sponsor) || [])];
 
 // Parse video embed URL
 function getVideoEmbed(url: string | null): string | null {
@@ -57,6 +53,100 @@ function getVideoEmbed(url: string | null): string | null {
   return null;
 }
 
+// Get icon and label for a URL
+function getLinkInfo(url: string): { icon: string; label: string; type: string } {
+  const hostname = new URL(url).hostname.replace("www.", "");
+  
+  // GitHub
+  if (hostname === "github.com") {
+    const path = new URL(url).pathname;
+    return { 
+      icon: "github", 
+      label: path.split("/").filter(Boolean).slice(0, 2).join("/") || "GitHub",
+      type: "github"
+    };
+  }
+  
+  // NPM
+  if (hostname === "npmjs.com" || hostname === "npm.im") {
+    return { icon: "npm", label: "npm", type: "npm" };
+  }
+  
+  // Twitter/X
+  if (hostname === "twitter.com" || hostname === "x.com") {
+    return { icon: "twitter", label: "Twitter", type: "twitter" };
+  }
+  
+  // YouTube
+  if (hostname === "youtube.com" || hostname === "youtu.be") {
+    return { icon: "youtube", label: "YouTube", type: "youtube" };
+  }
+  
+  // Discord
+  if (hostname === "discord.gg" || hostname === "discord.com") {
+    return { icon: "discord", label: "Discord", type: "discord" };
+  }
+  
+  // Telegram
+  if (hostname === "t.me" || hostname === "telegram.me") {
+    return { icon: "telegram", label: "Telegram", type: "telegram" };
+  }
+  
+  // LinkedIn
+  if (hostname === "linkedin.com") {
+    return { icon: "linkedin", label: "LinkedIn", type: "linkedin" };
+  }
+  
+  // Figma
+  if (hostname === "figma.com") {
+    return { icon: "figma", label: "Figma", type: "figma" };
+  }
+  
+  // Notion
+  if (hostname === "notion.so" || hostname === "notion.site") {
+    return { icon: "notion", label: "Notion", type: "notion" };
+  }
+  
+  // Medium
+  if (hostname === "medium.com" || hostname.endsWith(".medium.com")) {
+    return { icon: "medium", label: "Medium", type: "medium" };
+  }
+  
+  // Docs/GitBook
+  if (hostname.includes("gitbook") || hostname.includes("docs.")) {
+    return { icon: "docs", label: "Docs", type: "docs" };
+  }
+  
+  // Generic website
+  return { icon: "link", label: hostname, type: "website" };
+}
+
+// Collect all links
+const allLinks: Array<{ url: string; info: ReturnType<typeof getLinkInfo>; isPrimary?: boolean }> = [];
+
+if (project.source_code_url) {
+  allLinks.push({ 
+    url: project.source_code_url, 
+    info: getLinkInfo(project.source_code_url),
+    isPrimary: true 
+  });
+}
+
+if (project.demo_url) {
+  allLinks.push({ 
+    url: project.demo_url, 
+    info: { icon: "demo", label: "Live Demo", type: "demo" },
+    isPrimary: true 
+  });
+}
+
+rawLinks.forEach(link => {
+  // Avoid duplicates
+  if (link !== project.source_code_url && link !== project.demo_url) {
+    allLinks.push({ url: link, info: getLinkInfo(link) });
+  }
+});
+
 const videoEmbed = getVideoEmbed(project.video_url);
 ---
 
@@ -64,54 +154,138 @@ const videoEmbed = getVideoEmbed(project.video_url);
   <Header />
   
   <main>
-    <article class="mx-auto max-w-4xl px-6 py-12">
-      <!-- Header -->
-      <div class="mb-8">
-        <a
-          href="/"
-          class="mb-6 inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-white"
-        >
-          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
-            <path
-              d="M10 12L6 8L10 4"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          Back to projects
-        </a>
+    <article class="mx-auto max-w-4xl px-5 py-8 sm:px-6 sm:py-12">
+      <!-- Back link -->
+      <a
+        href="/"
+        class="mb-6 inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-white"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
+          <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Back to projects
+      </a>
 
+      <!-- Header -->
+      <div class="mb-6">
         <div class="flex flex-wrap items-start justify-between gap-4">
-          <div class="flex items-center gap-4">
+          <div class="flex items-start gap-4">
             {favicon && (
               <img
                 src={favicon}
                 alt=""
-                class="h-16 w-16 rounded-xl border border-gray-800 bg-gray-900 object-cover"
+                class="h-14 w-14 rounded-xl border border-gray-800 bg-gray-900 object-cover sm:h-16 sm:w-16"
               />
             )}
             <div>
-              <h1 class="font-display text-4xl text-white md:text-5xl">
+              <h1 class="font-display text-3xl text-white sm:text-4xl md:text-5xl">
                 {project.name}
               </h1>
               {project.tagline && (
-                <p class="mt-2 text-xl text-gray-400">{project.tagline}</p>
+                <p class="mt-2 text-base text-gray-400 sm:text-lg">{project.tagline}</p>
               )}
             </div>
           </div>
 
           {totalUSD > 0 && (
-            <div class="rounded-lg border border-gold-dim bg-gold-glow px-4 py-3">
-              <div class="font-mono text-2xl font-bold text-gold">
+            <div class="rounded-lg border border-gold/30 bg-gold/5 px-4 py-2.5">
+              <div class="font-mono text-xl font-bold text-gold sm:text-2xl">
                 ${totalUSD.toLocaleString()}
               </div>
-              <div class="text-sm text-gold-dim">Total awarded</div>
+              <div class="text-xs text-gold/70">Total awarded</div>
             </div>
           )}
         </div>
       </div>
+
+      <!-- Links (moved up) -->
+      {allLinks.length > 0 && (
+        <div class="mb-8 flex flex-wrap gap-2">
+          {allLinks.map(({ url, info, isPrimary }) => (
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener"
+              class:list={[
+                "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
+                info.type === "demo" 
+                  ? "border border-accent/50 bg-accent/10 text-accent hover:bg-accent/20"
+                  : "border border-gray-800 bg-gray-900 text-gray-300 hover:border-gray-700 hover:text-white"
+              ]}
+            >
+              {/* Icons */}
+              {info.icon === "github" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+              )}
+              {info.icon === "npm" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16">
+                  <rect fill="#CB3837" width="16" height="16" rx="2"/>
+                  <path fill="#fff" d="M3 3h10v10H8.5V5.5h-2v7.5H3z"/>
+                </svg>
+              )}
+              {info.icon === "twitter" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+                </svg>
+              )}
+              {info.icon === "youtube" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+                </svg>
+              )}
+              {info.icon === "discord" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+                </svg>
+              )}
+              {info.icon === "telegram" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+                </svg>
+              )}
+              {info.icon === "linkedin" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+                </svg>
+              )}
+              {info.icon === "figma" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M5.5 0C3.567 0 2 1.567 2 3.5S3.567 7 5.5 7H8V3.5C8 1.567 6.433 0 5.5 0m0 1C5.98 1 6.41 1.186 6.72 1.5H5.5A2.5 2.5 0 0 0 3 3.5C3 4.43 3.57 5.26 4.4 5.63A2.5 2.5 0 0 1 5.5 1M8 3.5V7h2.5A3.5 3.5 0 0 0 14 3.5 3.5 3.5 0 0 0 10.5 0H8v3.5m2.5-2.5a2.5 2.5 0 0 1 0 5H9V1zM5.5 8A3.5 3.5 0 0 0 2 11.5 3.5 3.5 0 0 0 5.5 15 3.5 3.5 0 0 0 9 11.5V8zm0 1H8v2.5A2.5 2.5 0 0 1 5.5 14 2.5 2.5 0 0 1 3 11.5 2.5 2.5 0 0 1 5.5 9"/>
+                </svg>
+              )}
+              {info.icon === "notion" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M2.788 1.746a1.26 1.26 0 0 1 .87-.326l8.114.007c.694.006.776.512.776.512l.035 9.058c0 .694-.496.972-.496.972l-6.57 3.858c-.497.291-.868.177-.868.177-.372-.115-.395-.491-.395-.491l-.023-12.42s-.087-.641.557-1.347M4.578 3.37v9.932l5.994-3.503V2.32zm4.907 4.559 1.02-.586V4.028l-1.02.6z"/>
+                </svg>
+              )}
+              {info.icon === "medium" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M9.025 8c0 2.485-2.02 4.5-4.513 4.5A4.506 4.506 0 0 1 0 8c0-2.486 2.02-4.5 4.512-4.5A4.506 4.506 0 0 1 9.025 8m4.95 0c0 2.34-1.01 4.236-2.256 4.236S9.463 10.339 9.463 8c0-2.34 1.01-4.236 2.256-4.236S13.975 5.661 13.975 8M16 8c0 2.096-.355 3.795-.794 3.795-.438 0-.793-1.7-.793-3.795 0-2.096.355-3.795.794-3.795.438 0 .793 1.699.793 3.795"/>
+                </svg>
+              )}
+              {info.icon === "docs" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 1.5h8a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1Z" stroke-linecap="round"/>
+                  <path d="M5.5 5h5M5.5 8h5M5.5 11h3" stroke-linecap="round"/>
+                </svg>
+              )}
+              {info.icon === "demo" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M6 3h7v7M13 3L6 10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              )}
+              {info.icon === "link" && (
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M6.5 9.5 9 7m-2.5 5H5a3 3 0 1 1 0-6h1.5m4 6H11a3 3 0 0 0 0-6H9.5" stroke-linecap="round"/>
+                </svg>
+              )}
+              <span class="truncate">{info.label}</span>
+            </a>
+          ))}
+        </div>
+      )}
 
       <!-- Cover Image or Video -->
       {(videoEmbed || coverImg) && (
@@ -132,7 +306,7 @@ const videoEmbed = getVideoEmbed(project.video_url);
       )}
 
       <!-- Meta info row -->
-      <div class="mb-12 flex flex-wrap items-center gap-6 border-b border-gray-800 pb-8">
+      <div class="mb-10 flex flex-wrap items-center gap-x-6 gap-y-4 border-b border-gray-800 pb-6">
         <!-- Builders -->
         <div class="flex items-center gap-3">
           <div class="flex">
@@ -141,18 +315,14 @@ const videoEmbed = getVideoEmbed(project.video_url);
                 href={`https://devfolio.co/@${builder.username}`}
                 target="_blank"
                 rel="noopener"
-                class="group relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-gray-900 bg-gray-700 transition-transform hover:z-10 hover:scale-110"
-                style={`margin-left: ${i > 0 ? "-12px" : "0"}`}
+                class="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 border-gray-900 bg-gray-700 transition-transform hover:z-10 hover:scale-110"
+                style={`margin-left: ${i > 0 ? "-10px" : "0"}`}
                 title={`${builder.first_name || ""} ${builder.last_name || ""}`.trim() || builder.username}
               >
                 {builder._profile_image ? (
-                  <img
-                    src={builder._profile_image}
-                    alt=""
-                    class="h-full w-full object-cover"
-                  />
+                  <img src={builder._profile_image} alt="" class="h-full w-full object-cover" />
                 ) : (
-                  <span class="text-sm font-medium text-gray-300">
+                  <span class="text-xs font-medium text-gray-300">
                     {(builder.first_name?.[0] || builder.username[0]).toUpperCase()}
                   </span>
                 )}
@@ -163,7 +333,7 @@ const videoEmbed = getVideoEmbed(project.video_url);
             <div class="text-white">
               {builders.map((b) => b.first_name || b.username).join(", ")}
             </div>
-            <div class="text-gray-500">
+            <div class="text-xs text-gray-500">
               {builders.length === 1 ? "Builder" : "Builders"}
             </div>
           </div>
@@ -171,9 +341,9 @@ const videoEmbed = getVideoEmbed(project.video_url);
 
         <!-- Hashtags -->
         {hashtags.length > 0 && (
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-1.5">
             {hashtags.map((tag) => (
-              <span class="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-xs text-gray-400">
+              <span class="rounded-full border border-gray-800 bg-gray-900 px-2.5 py-1 text-xs text-gray-500">
                 {tag}
               </span>
             ))}
@@ -183,18 +353,18 @@ const videoEmbed = getVideoEmbed(project.video_url);
 
       <!-- Awards section -->
       {awards && awards.awards.length > 0 && (
-        <section class="mb-12">
+        <section class="mb-10">
           <h2 class="mb-4 font-display text-xl text-white">Awards</h2>
-          <div class="grid gap-3 sm:grid-cols-2">
+          <div class="grid gap-2 sm:grid-cols-2">
             {awards.awards.map((award) => (
-              <div class="flex items-center justify-between rounded-lg border border-gray-800 bg-gray-900 p-4">
+              <div class="flex items-center justify-between rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-3">
                 <div>
-                  <div class="font-medium text-white">{award.sponsor}</div>
+                  <div class="text-sm font-medium text-white">{award.sponsor}</div>
                   {award.track && (
-                    <div class="text-sm text-gray-500">{award.track}</div>
+                    <div class="text-xs text-gray-500">{award.track}</div>
                   )}
                 </div>
-                <div class="font-mono font-bold text-gold">{award.amount}</div>
+                <div class="font-mono text-sm font-bold text-gold">{award.amount}</div>
               </div>
             ))}
           </div>
@@ -203,10 +373,10 @@ const videoEmbed = getVideoEmbed(project.video_url);
 
       <!-- Description -->
       {project.description && project.description.length > 0 && (
-        <section class="mb-12 space-y-10">
+        <section class="mb-10 space-y-8">
           {project.description.map((block) => (
             <div>
-              <h2 class="mb-4 font-display text-2xl text-white border-b border-gray-800 pb-2">
+              <h2 class="mb-4 border-b border-gray-800 pb-2 font-display text-xl text-white">
                 {block.title}
               </h2>
               <MarkdownContent content={block.content} />
@@ -215,62 +385,17 @@ const videoEmbed = getVideoEmbed(project.video_url);
         </section>
       )}
 
-      <!-- Links -->
-      {(links.length > 0 || project.source_code_url || project.demo_url) && (
-        <section class="mb-12">
-          <h2 class="mb-4 font-display text-xl text-white">Links</h2>
-          <div class="flex flex-wrap gap-3">
-            {project.source_code_url && (
-              <a
-                href={project.source_code_url}
-                target="_blank"
-                rel="noopener"
-                class="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:text-white"
-              >
-                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
-                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-                </svg>
-                Source Code
-              </a>
-            )}
-            {project.demo_url && (
-              <a
-                href={project.demo_url}
-                target="_blank"
-                rel="noopener"
-                class="inline-flex items-center gap-2 rounded-lg border border-accent bg-accent/10 px-4 py-2 text-sm text-accent transition-colors hover:bg-accent/20"
-              >
-                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor">
-                  <path d="M6 3h7v7M13 3L6 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-                Live Demo
-              </a>
-            )}
-            {links.map((link) => (
-              <a
-                href={link}
-                target="_blank"
-                rel="noopener"
-                class="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:text-white"
-              >
-                {new URL(link).hostname.replace("www.", "")}
-              </a>
-            ))}
-          </div>
-        </section>
-      )}
-
       <!-- Gallery -->
       {pictures.length > 0 && (
         <section>
           <h2 class="mb-4 font-display text-xl text-white">Gallery</h2>
-          <div class="grid gap-4 sm:grid-cols-2">
+          <div class="grid gap-3 sm:grid-cols-2">
             {pictures.map((pic) => (
               <a
                 href={pic}
                 target="_blank"
                 rel="noopener"
-                class="overflow-hidden rounded-lg border border-gray-800 transition-all hover:border-gray-600"
+                class="overflow-hidden rounded-lg border border-gray-800 transition-colors hover:border-gray-700"
               >
                 <img src={pic} alt="" class="w-full" loading="lazy" />
               </a>
@@ -281,14 +406,14 @@ const videoEmbed = getVideoEmbed(project.video_url);
     </article>
   </main>
   
-  <footer class="border-t border-gray-800 py-12">
+  <footer class="border-t border-gray-800 py-10">
     <div class="mx-auto max-w-7xl px-6">
       <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <a href="/" class="text-sm text-gray-500 hover:text-white transition-colors">
+        <a href="/" class="text-sm text-gray-500 transition-colors hover:text-white">
           ← Back to all projects
         </a>
-        <p class="font-mono text-xs text-gray-600">
-          Zypherpunk 2025
+        <p class="text-sm text-gray-500">
+          Made by <a href="https://d4mr.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">d4mr</a>
         </p>
       </div>
     </div>
