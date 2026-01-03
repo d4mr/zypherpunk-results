@@ -245,7 +245,7 @@ const HTML = `
         <div class="stat-label">Awards</div>
       </div>
       <div class="stat">
-        <div class="stat-value gold">$189K</div>
+        <div class="stat-value gold">$219K</div>
         <div class="stat-label">Distributed</div>
       </div>
     </div>

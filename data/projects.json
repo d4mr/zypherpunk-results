@@ -2,7 +2,7 @@
   "meta": {
     "totalProjects": 88,
     "totalAwards": 140,
-    "totalUSD": 189000
+    "totalUSD": 219000
   },
   "projects": [
     {
@@ -28,10 +28,8 @@
           "amount": "$7000"
         }
       ],
-      "totalUSD": 11500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 13000,
+      "otherPrizes": []
     },
     {
       "name": "Zapp-Private QR",
@@ -84,10 +82,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 7500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 9000,
+      "otherPrizes": []
     },
     {
       "name": "Hydex",
@@ -274,10 +270,8 @@
           "amount": "$1500"
         }
       ],
-      "totalUSD": 4500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 6000,
+      "otherPrizes": []
     },
     {
       "name": "SIP Protocol",
@@ -315,10 +309,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 4000,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 5500,
+      "otherPrizes": []
     },
     {
       "name": "Zkputer",
@@ -352,10 +344,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 3500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 5000,
+      "otherPrizes": []
     },
     {
       "name": "Cipher Vault",
@@ -551,10 +541,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 2000,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 3500,
+      "otherPrizes": []
     },
     {
       "name": "Bridger",
@@ -611,10 +599,8 @@
           "amount": "$1000"
         }
       ],
-      "totalUSD": 1500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 3000,
+      "otherPrizes": []
     },
     {
       "name": "Shadow Swap",
@@ -681,10 +667,8 @@
           "amount": "$1500"
         }
       ],
-      "totalUSD": 1500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 3000,
+      "otherPrizes": []
     },
     {
       "name": "secure-legion",
@@ -700,10 +684,8 @@
           "amount": "$1500"
         }
       ],
-      "totalUSD": 1500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 3000,
+      "otherPrizes": []
     },
     {
       "name": "zord",
@@ -719,10 +701,8 @@
           "amount": "$1500"
         }
       ],
-      "totalUSD": 1500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 3000,
+      "otherPrizes": []
     },
     {
       "name": "zump-fun",
@@ -768,10 +748,8 @@
           "amount": "$1000"
         }
       ],
-      "totalUSD": 1000,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2500,
+      "otherPrizes": []
     },
     {
       "name": "Private money",
@@ -792,10 +770,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 1000,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2500,
+      "otherPrizes": []
     },
     {
       "name": "ZecFlow",
@@ -831,10 +807,8 @@
           "amount": "$1000"
         }
       ],
-      "totalUSD": 1000,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2500,
+      "otherPrizes": []
     },
     {
       "name": "Raven bridge",
@@ -979,10 +953,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2000,
+      "otherPrizes": []
     },
     {
       "name": "zcash-aztec-bridge",
@@ -998,10 +970,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2000,
+      "otherPrizes": []
     },
     {
       "name": "zero-state",
@@ -1017,10 +987,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2000,
+      "otherPrizes": []
     },
     {
       "name": "zcast",
@@ -1036,10 +1004,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2000,
+      "otherPrizes": []
     },
     {
       "name": "zk-prof",
@@ -1055,10 +1021,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2000,
+      "otherPrizes": []
     },
     {
       "name": "shield",
@@ -1074,10 +1038,8 @@
           "amount": "$500"
         }
       ],
-      "totalUSD": 500,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 2000,
+      "otherPrizes": []
     },
     {
       "name": "Starknet Lightning Privacy Mixer",
@@ -1404,10 +1366,8 @@
           "amount": "$1500 credits"
         }
       ],
-      "totalUSD": 5000,
-      "otherPrizes": [
-        "$1500 credits"
-      ]
+      "totalUSD": 6500,
+      "otherPrizes": []
     }
   ]
 }

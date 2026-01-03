@@ -6,7 +6,7 @@
 
 ---
 
-An unofficial community archive of winning projects from the Zypherpunk Hackathon (December 2025). Browse 88 privacy-focused projects building the future of Zcash.
+An unofficial community archive of winning projects from the Zypherpunk Hackathon (December 2025). Browse 88 privacy-focused projects that won a share of $219K in prizes.
 
 > **Disclaimer:** Not affiliated with [zypherpunk.xyz](https://zypherpunk.xyz), the hackathon organisers, or any sponsors. Data compiled from winner announcements in the official Discord server.
 
