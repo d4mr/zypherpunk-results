@@ -1,0 +1,247 @@
+---
+import type { Project } from '../lib/devfolio';
+import type { ProjectWithAwards } from '../lib/awards';
+import { formatAmount, getProjectBySlug } from '../lib/awards';
+import { getImageUrl } from '../lib/devfolio';
+
+interface Props {
+  project: Project;
+  awards: ProjectWithAwards | undefined;
+  index?: number;
+}
+
+const { project, awards, index = 0 } = Astro.props;
+
+const coverImg = getImageUrl(project._cover_img);
+const builders = project.builders || [];
+const hashtags = project.hashtags?.map(h => h.hashtag.name) || [];
+const totalUSD = awards?.totalUSD || 0;
+const awardCount = awards?.awards.length || 0;
+
+// Get unique sponsors
+const sponsors = [...new Set(awards?.awards.map(a => a.sponsor) || [])];
+---
+
+<a href={`/project/${project.slug}`} class="project-card" style={`--delay: ${index * 0.05}s`}>
+  <div class="project-card__image">
+    {coverImg ? (
+      <img src={coverImg} alt="" loading="lazy" />
+    ) : (
+      <div class="project-card__placeholder">
+        <span>{project.name.charAt(0)}</span>
+      </div>
+    )}
+    {totalUSD > 0 && (
+      <div class="project-card__prize">
+        <span class="amount">${totalUSD.toLocaleString()}</span>
+      </div>
+    )}
+  </div>
+  
+  <div class="project-card__content">
+    <div class="project-card__header">
+      <h3 class="project-card__title">{project.name}</h3>
+      {awardCount > 0 && (
+        <span class="project-card__award-count" title={`${awardCount} awards from ${sponsors.length} sponsors`}>
+          {awardCount}×
+        </span>
+      )}
+    </div>
+    
+    {project.tagline && (
+      <p class="project-card__tagline">{project.tagline}</p>
+    )}
+    
+    <div class="project-card__footer">
+      <div class="project-card__builders">
+        {builders.slice(0, 3).map(builder => (
+          <div class="project-card__builder" title={`${builder.first_name || ''} ${builder.last_name || ''}`.trim() || builder.username}>
+            {builder._profile_image ? (
+              <img src={builder._profile_image} alt="" />
+            ) : (
+              <span>{(builder.first_name?.[0] || builder.username[0]).toUpperCase()}</span>
+            )}
+          </div>
+        ))}
+        {builders.length > 3 && (
+          <span class="project-card__builder-count">+{builders.length - 3}</span>
+        )}
+      </div>
+      
+      {sponsors.length > 0 && (
+        <div class="project-card__sponsors mono">
+          {sponsors.slice(0, 2).join(', ')}
+          {sponsors.length > 2 && ` +${sponsors.length - 2}`}
+        </div>
+      )}
+    </div>
+  </div>
+</a>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--gray-900);
+    border: 1px solid var(--gray-800);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: 
+      border-color var(--transition-base),
+      transform var(--transition-base),
+      box-shadow var(--transition-base);
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+  
+  .project-card:hover {
+    border-color: var(--gray-600);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .project-card__image {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--gray-800);
+    overflow: hidden;
+  }
+  
+  .project-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+  }
+  
+  .project-card:hover .project-card__image img {
+    transform: scale(1.03);
+  }
+  
+  .project-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-style: italic;
+    color: var(--gray-600);
+    background: linear-gradient(135deg, var(--gray-800) 0%, var(--gray-900) 100%);
+  }
+  
+  .project-card__prize {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--gold-dim);
+  }
+  
+  .project-card__prize .amount {
+    font-size: 0.875rem;
+  }
+  
+  .project-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+  }
+  
+  .project-card__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+  
+  .project-card__title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+  
+  .project-card__award-count {
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: var(--accent-glow);
+    padding: 2px 6px;
+    border-radius: var(--radius-sm);
+  }
+  
+  .project-card__tagline {
+    font-size: 0.875rem;
+    color: var(--gray-400);
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .project-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-top: auto;
+    padding-top: var(--space-sm);
+  }
+  
+  .project-card__builders {
+    display: flex;
+    align-items: center;
+  }
+  
+  .project-card__builder {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--gray-700);
+    border: 2px solid var(--gray-900);
+    margin-right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+    font-weight: 600;
+    color: var(--gray-300);
+  }
+  
+  .project-card__builder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .project-card__builder-count {
+    margin-left: var(--space-sm);
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+  
+  .project-card__sponsors {
+    font-size: 0.7rem;
+    color: var(--gray-500);
+    text-align: right;
+    max-width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>

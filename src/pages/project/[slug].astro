@@ -1,0 +1,296 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import MarkdownContent from '../../components/MarkdownContent.astro';
+import { getAllProjects, getProjectBySlug } from '../../lib/awards';
+import { fetchProject, extractSlugFromUrl, getImageUrl, getPictures, getLinks, type Project } from '../../lib/devfolio';
+
+export async function getStaticPaths() {
+  const allAwards = getAllProjects();
+  
+  // Extract all slugs
+  const slugs = allAwards
+    .map(award => extractSlugFromUrl(award.url))
+    .filter((slug): slug is string => slug !== null);
+  
+  // Fetch all projects in parallel at build time
+  const paths = await Promise.all(
+    slugs.map(async (slug) => {
+      const project = await fetchProject(slug);
+      if (!project) {
+        console.warn(`Project not found on Devfolio: ${slug}`);
+        return null;
+      }
+      return {
+        params: { slug },
+        props: { project },
+      };
+    })
+  );
+  
+  // Filter out null entries (projects that don't exist)
+  return paths.filter((p): p is NonNullable<typeof p> => p !== null);
+}
+
+interface Props {
+  project: Project;
+}
+
+const { slug } = Astro.params;
+const { project } = Astro.props;
+const awards = getProjectBySlug(slug!);
+
+const favicon = getImageUrl(project._favicon);
+const coverImg = getImageUrl(project._cover_img);
+const pictures = getPictures(project.pictures);
+const links = getLinks(project.links);
+const builders = project.builders || [];
+const hashtags = project.hashtags?.map((h) => h.hashtag.name) || [];
+const totalUSD = awards?.totalUSD || 0;
+const sponsors = [...new Set(awards?.awards.map((a) => a.sponsor) || [])];
+
+// Parse video embed URL
+function getVideoEmbed(url: string | null): string | null {
+  if (!url) return null;
+  const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
+  return null;
+}
+
+const videoEmbed = getVideoEmbed(project.video_url);
+---
+
+<Layout title={`${project.name} - Zypherpunk`} description={project.tagline || undefined}>
+  <Header />
+  
+  <main>
+    <article class="mx-auto max-w-4xl px-6 py-12">
+      <!-- Header -->
+      <div class="mb-8">
+        <a
+          href="/"
+          class="mb-6 inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-white"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M10 12L6 8L10 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Back to projects
+        </a>
+
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div class="flex items-center gap-4">
+            {favicon && (
+              <img
+                src={favicon}
+                alt=""
+                class="h-16 w-16 rounded-xl border border-gray-800 bg-gray-900 object-cover"
+              />
+            )}
+            <div>
+              <h1 class="font-display text-4xl text-white md:text-5xl">
+                {project.name}
+              </h1>
+              {project.tagline && (
+                <p class="mt-2 text-xl text-gray-400">{project.tagline}</p>
+              )}
+            </div>
+          </div>
+
+          {totalUSD > 0 && (
+            <div class="rounded-lg border border-gold-dim bg-gold-glow px-4 py-3">
+              <div class="font-mono text-2xl font-bold text-gold">
+                ${totalUSD.toLocaleString()}
+              </div>
+              <div class="text-sm text-gold-dim">Total awarded</div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Cover Image or Video -->
+      {(videoEmbed || coverImg) && (
+        <div class="mb-8 overflow-hidden rounded-lg border border-gray-800">
+          {videoEmbed ? (
+            <div class="relative aspect-video">
+              <iframe
+                src={videoEmbed}
+                class="absolute inset-0 h-full w-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              />
+            </div>
+          ) : coverImg ? (
+            <img src={coverImg} alt={project.name} class="w-full" />
+          ) : null}
+        </div>
+      )}
+
+      <!-- Meta info row -->
+      <div class="mb-12 flex flex-wrap items-center gap-6 border-b border-gray-800 pb-8">
+        <!-- Builders -->
+        <div class="flex items-center gap-3">
+          <div class="flex">
+            {builders.map((builder, i) => (
+              <a
+                href={`https://devfolio.co/@${builder.username}`}
+                target="_blank"
+                rel="noopener"
+                class="group relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border-2 border-gray-900 bg-gray-700 transition-transform hover:z-10 hover:scale-110"
+                style={`margin-left: ${i > 0 ? "-12px" : "0"}`}
+                title={`${builder.first_name || ""} ${builder.last_name || ""}`.trim() || builder.username}
+              >
+                {builder._profile_image ? (
+                  <img
+                    src={builder._profile_image}
+                    alt=""
+                    class="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span class="text-sm font-medium text-gray-300">
+                    {(builder.first_name?.[0] || builder.username[0]).toUpperCase()}
+                  </span>
+                )}
+              </a>
+            ))}
+          </div>
+          <div class="text-sm">
+            <div class="text-white">
+              {builders.map((b) => b.first_name || b.username).join(", ")}
+            </div>
+            <div class="text-gray-500">
+              {builders.length === 1 ? "Builder" : "Builders"}
+            </div>
+          </div>
+        </div>
+
+        <!-- Hashtags -->
+        {hashtags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {hashtags.map((tag) => (
+              <span class="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-xs text-gray-400">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <!-- Awards section -->
+      {awards && awards.awards.length > 0 && (
+        <section class="mb-12">
+          <h2 class="mb-4 font-display text-xl text-white">Awards</h2>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {awards.awards.map((award) => (
+              <div class="flex items-center justify-between rounded-lg border border-gray-800 bg-gray-900 p-4">
+                <div>
+                  <div class="font-medium text-white">{award.sponsor}</div>
+                  {award.track && (
+                    <div class="text-sm text-gray-500">{award.track}</div>
+                  )}
+                </div>
+                <div class="font-mono font-bold text-gold">{award.amount}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Description -->
+      {project.description && project.description.length > 0 && (
+        <section class="mb-12 space-y-10">
+          {project.description.map((block) => (
+            <div>
+              <h2 class="mb-4 font-display text-2xl text-white border-b border-gray-800 pb-2">
+                {block.title}
+              </h2>
+              <MarkdownContent content={block.content} />
+            </div>
+          ))}
+        </section>
+      )}
+
+      <!-- Links -->
+      {(links.length > 0 || project.source_code_url || project.demo_url) && (
+        <section class="mb-12">
+          <h2 class="mb-4 font-display text-xl text-white">Links</h2>
+          <div class="flex flex-wrap gap-3">
+            {project.source_code_url && (
+              <a
+                href={project.source_code_url}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:text-white"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                </svg>
+                Source Code
+              </a>
+            )}
+            {project.demo_url && (
+              <a
+                href={project.demo_url}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 rounded-lg border border-accent bg-accent/10 px-4 py-2 text-sm text-accent transition-colors hover:bg-accent/20"
+              >
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                  <path d="M6 3h7v7M13 3L6 10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                Live Demo
+              </a>
+            )}
+            {links.map((link) => (
+              <a
+                href={link}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:text-white"
+              >
+                {new URL(link).hostname.replace("www.", "")}
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Gallery -->
+      {pictures.length > 0 && (
+        <section>
+          <h2 class="mb-4 font-display text-xl text-white">Gallery</h2>
+          <div class="grid gap-4 sm:grid-cols-2">
+            {pictures.map((pic) => (
+              <a
+                href={pic}
+                target="_blank"
+                rel="noopener"
+                class="overflow-hidden rounded-lg border border-gray-800 transition-all hover:border-gray-600"
+              >
+                <img src={pic} alt="" class="w-full" loading="lazy" />
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </article>
+  </main>
+  
+  <footer class="border-t border-gray-800 py-12">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <a href="/" class="text-sm text-gray-500 hover:text-white transition-colors">
+          ← Back to all projects
+        </a>
+        <p class="font-mono text-xs text-gray-600">
+          Zypherpunk 2025
+        </p>
+      </div>
+    </div>
+  </footer>
+</Layout>

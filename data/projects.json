@@ -1,0 +1,1413 @@
+{
+  "meta": {
+    "totalProjects": 88,
+    "totalAwards": 140,
+    "totalUSD": 189000
+  },
+  "projects": [
+    {
+      "name": "zcash-router-sdk",
+      "url": "https://devfolio.co/projects/funding-anonymous-solana-account-zcash-router-sdk-9791",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$1500"
+        },
+        {
+          "sponsor": "Osmosis",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$3000"
+        },
+        {
+          "sponsor": "Helius",
+          "amount": "$7000"
+        }
+      ],
+      "totalUSD": 11500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Zapp-Private QR",
+      "url": "https://devfolio.co/projects/zapp-private-qr-payments-6c44",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Private Payments and Transactions",
+          "amount": "$2000"
+        },
+        {
+          "sponsor": "Bitlux",
+          "track": "Private Payments",
+          "amount": "$2000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private Payments & Transactions",
+          "amount": "$500"
+        },
+        {
+          "sponsor": "Osmosis",
+          "track": "Private Payments & Transactions",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 7500,
+      "otherPrizes": []
+    },
+    {
+      "name": "t2z (prithvish)",
+      "url": "https://devfolio.co/projects/tz-2bf2",
+      "awards": [
+        {
+          "sponsor": "ECC (Electric Coin Company)",
+          "amount": "$5000"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Raybot",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$2000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 7500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Hydex",
+      "url": "https://devfolio.co/projects/hydex-bridge-c9fa",
+      "awards": [
+        {
+          "sponsor": "Arcium",
+          "amount": "$3500"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$1000"
+        },
+        {
+          "sponsor": "Helius",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 7500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Loofta Pay",
+      "url": "https://devfolio.co/projects/loofta-2725",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$3000"
+        },
+        {
+          "sponsor": "NEAR",
+          "track": "Private Payments and Transactions",
+          "amount": "$3000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private Payments & Transactions",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 7000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zaunchpad",
+      "url": "https://devfolio.co/projects/zaunchpad-5e0f",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$5000"
+        },
+        {
+          "sponsor": "Unstoppable Wallet",
+          "amount": "$2000"
+        }
+      ],
+      "totalUSD": 7000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zucchini Wallet",
+      "url": "https://devfolio.co/projects/zucchini-wallet-121a",
+      "awards": [
+        {
+          "sponsor": "Zcash Community Grants",
+          "track": "DeFi & Trading",
+          "amount": "$2000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$1500"
+        },
+        {
+          "sponsor": "Osmosis",
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 6500,
+      "otherPrizes": []
+    },
+    {
+      "name": "ZULU.CASH",
+      "url": "https://devfolio.co/projects/zulucash-5d31",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Qilin",
+      "url": "https://devfolio.co/projects/qilin-273c",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$5000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 5500,
+      "otherPrizes": []
+    },
+    {
+      "name": "OIF-Starknet",
+      "url": "https://devfolio.co/projects/oifztarknet-7ca4",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$5000"
+        }
+      ],
+      "totalUSD": 5000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zolanear ShadeLink",
+      "url": "https://devfolio.co/projects/zolanear-shadelink-9c31",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$5000"
+        }
+      ],
+      "totalUSD": 5000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Pay Anyone Legend",
+      "url": "https://devfolio.co/projects/pay-anyone-legend-733c",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$5000"
+        }
+      ],
+      "totalUSD": 5000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Privora",
+      "url": "https://devfolio.co/projects/privora-859d",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$5000"
+        }
+      ],
+      "totalUSD": 5000,
+      "otherPrizes": []
+    },
+    {
+      "name": "cipherscan",
+      "url": "https://devfolio.co/projects/cipherscan-fa99",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Raybot",
+          "track": "Data & Analytics",
+          "amount": "$3000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Zcash Data & Analytics",
+          "amount": "$1500"
+        }
+      ],
+      "totalUSD": 4500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "SIP Protocol",
+      "url": "https://devfolio.co/projects/sip-protocol-2026",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$4000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 4500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Anon Mesh",
+      "url": "https://devfolio.co/projects/anonmesh-8a9c",
+      "awards": [
+        {
+          "sponsor": "Arcium",
+          "amount": "$3500"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 4000,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Zkputer",
+      "url": "https://devfolio.co/projects/zkputer-2900",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$4000"
+        }
+      ],
+      "totalUSD": 4000,
+      "otherPrizes": []
+    },
+    {
+      "name": "nocomfi",
+      "url": "https://devfolio.co/projects/nocomfi-d2e3",
+      "awards": [
+        {
+          "sponsor": "Aztec",
+          "track": "Main",
+          "amount": "$3000"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private DeFi & Trading",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 3500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Cipher Vault",
+      "url": "https://devfolio.co/projects/cipher-vault-fhe-analytical-engine-5422",
+      "awards": [
+        {
+          "sponsor": "Fhenix",
+          "amount": "$3000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Zcash Data & Analytics",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 3500,
+      "otherPrizes": []
+    },
+    {
+      "name": "A short film on Digital Privacy",
+      "url": "https://devfolio.co/projects/stuff-5c8a",
+      "awards": [
+        {
+          "sponsor": "Aztec",
+          "track": "Content",
+          "amount": "$500"
+        },
+        {
+          "sponsor": "Bitlux",
+          "track": "Content",
+          "amount": "$600"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$1500"
+        },
+        {
+          "sponsor": "Osmosis",
+          "track": "Private Focused Content & Media",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 3100,
+      "otherPrizes": []
+    },
+    {
+      "name": "Liar's proof",
+      "url": "https://devfolio.co/projects/liars-proof-a7e2",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Templar Protocol",
+      "url": "https://devfolio.co/projects/templar-protocol-9e69",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Aicall.tv",
+      "url": "https://devfolio.co/projects/aicalltv-1fd8",
+      "awards": [
+        {
+          "sponsor": "NEAR",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Umbra",
+      "url": "https://devfolio.co/submissions/umbra-6c09",
+      "awards": [
+        {
+          "sponsor": "Mina",
+          "track": "Main",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "MinaBarter",
+      "url": "https://devfolio.co/projects/barter-swap-8a6d",
+      "awards": [
+        {
+          "sponsor": "Mina",
+          "track": "Main",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "onyx",
+      "url": "https://devfolio.co/projects/onyx-edfc",
+      "awards": [
+        {
+          "sponsor": "Aztec",
+          "track": "Main",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "t2z (dominik)",
+      "url": "https://devfolio.co/projects/tz-transparent-to-shielded-459e",
+      "awards": [
+        {
+          "sponsor": "ECC (Electric Coin Company)",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "mumtaZ",
+      "url": "https://devfolio.co/projects/zeceth-291c",
+      "awards": [
+        {
+          "sponsor": "Fhenix",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Fhe-Pred",
+      "url": "https://devfolio.co/projects/fhepred-b06a",
+      "awards": [
+        {
+          "sponsor": "Fhenix",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "SafeMask",
+      "url": "https://devfolio.co/projects/safemask-e909",
+      "awards": [
+        {
+          "sponsor": "Unstoppable Wallet",
+          "amount": "$3000"
+        }
+      ],
+      "totalUSD": 3000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Brooke Lacey",
+      "url": "https://devfolio.co/projects/wtf-even-is-privacy-a549",
+      "awards": [
+        {
+          "sponsor": "Mina",
+          "track": "Content",
+          "amount": "$500"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$1000"
+        },
+        {
+          "sponsor": "Osmosis",
+          "track": "Private Focused Content & Media",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 2000,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Bridger",
+      "url": "https://devfolio.co/projects/bridger-c23a",
+      "awards": [
+        {
+          "sponsor": "Polygon Miden",
+          "amount": "$2000"
+        }
+      ],
+      "totalUSD": 2000,
+      "otherPrizes": []
+    },
+    {
+      "name": "PCZT Kit",
+      "url": "https://devfolio.co/projects/pcztkit-289b",
+      "awards": [
+        {
+          "sponsor": "Zcash Community Grants",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$2000"
+        }
+      ],
+      "totalUSD": 2000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Temi",
+      "url": "https://devfolio.co/projects/temi-d908",
+      "awards": [
+        {
+          "sponsor": "ECC (Electric Coin Company)",
+          "amount": "$2000"
+        }
+      ],
+      "totalUSD": 2000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Liquid Privacy",
+      "url": "https://devfolio.co/projects/liquid-privacy-b054",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private DeFi & Trading",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Shadow Swap",
+      "url": "https://devfolio.co/projects/shadow-swap-7847",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$1000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private DeFi & Trading",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": []
+    },
+    {
+      "name": "CircuitX",
+      "url": "https://devfolio.co/projects/circuitx-243d",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$1000"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private DeFi & Trading",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zarlink",
+      "url": "https://devfolio.co/projects/zarklink-934f",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        },
+        {
+          "sponsor": "Zcash Community Grants",
+          "track": "DeFi & Trading",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": []
+    },
+    {
+      "name": "rime",
+      "url": "https://devfolio.co/projects/rime-d957",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$1500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "secure-legion",
+      "url": "https://devfolio.co/projects/secure-legion-6c44",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Private Payments & Transactions",
+          "amount": "$1500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "zord",
+      "url": "https://devfolio.co/projects/zord-protocol-4081",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Creative Privacy Applications",
+          "amount": "$1500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "zump-fun",
+      "url": "https://devfolio.co/projects/zumpfun-61d5",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Private DeFi & Trading",
+          "amount": "$1500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": []
+    },
+    {
+      "name": "zspa",
+      "url": "https://devfolio.co/projects/zcash-shielded-philanthropy-agent-zspa-3f6b",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$1500"
+        }
+      ],
+      "totalUSD": 1500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Ghoul",
+      "url": "https://devfolio.co/projects/ghoul-5bb1",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "Honorary Mention (Not rewarded - made by core team member)"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Private money",
+      "url": "https://devfolio.co/projects/private-money-38c5",
+      "awards": [
+        {
+          "sponsor": "Aztec",
+          "track": "Content",
+          "amount": "$500"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "ZecFlow",
+      "url": "https://devfolio.co/projects/zecflow-58e7",
+      "awards": [
+        {
+          "sponsor": "Nillion",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "15,000 NIL"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": [
+        "15,000 NIL"
+      ]
+    },
+    {
+      "name": "zcash-explorer",
+      "url": "https://devfolio.co/projects/zcash-explorer-35fa",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Zcash Data & Analytics",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Raven bridge",
+      "url": "https://devfolio.co/projects/raven-bridge-00ab",
+      "awards": [
+        {
+          "sponsor": "Polygon Miden",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": []
+    },
+    {
+      "name": "goZec",
+      "url": "https://devfolio.co/projects/gozec-6221",
+      "awards": [
+        {
+          "sponsor": "Zcash Community Grants",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zcash Modern Doc",
+      "url": "https://devfolio.co/projects/zcash-modern-doc-4a66",
+      "awards": [
+        {
+          "sponsor": "Zcash Community Grants",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": []
+    },
+    {
+      "name": "ZUSD",
+      "url": "https://devfolio.co/projects/zusd-046d",
+      "awards": [
+        {
+          "sponsor": "Zcash Community Grants",
+          "track": "DeFi & Trading",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": []
+    },
+    {
+      "name": "zypher",
+      "url": "https://devfolio.co/projects/zipher-a231",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": []
+    },
+    {
+      "name": "zerdinals",
+      "url": "https://devfolio.co/projects/zerdinals-2f2d",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Creative Privacy Applications",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zeke",
+      "url": "https://devfolio.co/projects/zeke-9a89",
+      "awards": [
+        {
+          "sponsor": "Bitlux",
+          "track": "Content",
+          "amount": "$600"
+        }
+      ],
+      "totalUSD": 600,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zchat",
+      "url": "https://devfolio.co/projects/zchat-ea53",
+      "awards": [
+        {
+          "sponsor": "Bitlux",
+          "track": "Content",
+          "amount": "$600"
+        }
+      ],
+      "totalUSD": 600,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zeal Zcash",
+      "url": "https://devfolio.co/projects/zeal-zcash-046e",
+      "awards": [
+        {
+          "sponsor": "Bitlux",
+          "track": "Content",
+          "amount": "$600"
+        }
+      ],
+      "totalUSD": 600,
+      "otherPrizes": []
+    },
+    {
+      "name": "Bitlux",
+      "url": "https://devfolio.co/projects/bitlux-d122",
+      "awards": [
+        {
+          "sponsor": "Bitlux",
+          "track": "Content",
+          "amount": "$600"
+        }
+      ],
+      "totalUSD": 600,
+      "otherPrizes": []
+    },
+    {
+      "name": "open-bands",
+      "url": "https://devfolio.co/projects/openbands-f783",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "zcash-aztec-bridge",
+      "url": "https://devfolio.co/projects/zcash-lessgreater-aztec-bridge-9238",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "zero-state",
+      "url": "https://devfolio.co/projects/zerostate-8597",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "zcast",
+      "url": "https://devfolio.co/projects/zighway-0df2",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Creative Privacy Applications",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "zk-prof",
+      "url": "https://devfolio.co/projects/zkprof-173f",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "shield",
+      "url": "https://devfolio.co/projects/shield-cae1",
+      "awards": [
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        },
+        {
+          "sponsor": "Tachyon",
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    },
+    {
+      "name": "Starknet Lightning Privacy Mixer",
+      "url": "https://devfolio.co/projects/starknet-lightning-privacy-mixer-v-431e",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "StarkShield",
+      "url": "https://devfolio.co/projects/starkshield-fb4c",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "ShieldNet",
+      "url": "https://devfolio.co/projects/shieldnet-a777",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "AetherPay",
+      "url": "https://devfolio.co/projects/aetherpay-b719",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Treazury.xyz",
+      "url": "https://devfolio.co/projects/treazuryxyz-3220",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Phantom Agents",
+      "url": "https://devfolio.co/projects/phantomagents-758d",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Goodness Nwankwo",
+      "url": "https://devfolio.co/projects/mina-protocol-a239",
+      "awards": [
+        {
+          "sponsor": "Mina",
+          "track": "Content",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Onatola Tomilehin",
+      "url": "https://devfolio.co/projects/privacy-chronicles-8223",
+      "awards": [
+        {
+          "sponsor": "Mina",
+          "track": "Content",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Miden Zcash",
+      "url": "https://devfolio.co/projects/midenzcash-0eef",
+      "awards": [
+        {
+          "sponsor": "Polygon Miden",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Shield Bridge",
+      "url": "https://devfolio.co/projects/shieldbridge-e164",
+      "awards": [
+        {
+          "sponsor": "Polygon Miden",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zephyr Wallet",
+      "url": "https://devfolio.co/projects/zephyr-wallet-d529",
+      "awards": [
+        {
+          "sponsor": "Polygon Miden",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Veil bridge",
+      "url": "https://devfolio.co/projects/veilbridge-43ff",
+      "awards": [
+        {
+          "sponsor": "Polygon Miden",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "zero-bridge",
+      "url": "https://devfolio.co/projects/zerobridge-9bbf",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "arc-silence",
+      "url": "https://devfolio.co/projects/arcsilence-27f5",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Private DeFi & Trading",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "zcash-tunnels-of-privacy",
+      "url": "https://devfolio.co/projects/zcash-tunnels-of-privacy-09a4",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Creative Privacy Applications",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "unsolved-crypto-problem",
+      "url": "https://devfolio.co/projects/the-unsolved-privacy-problem-c614",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "casten-clip-media",
+      "url": "https://devfolio.co/projects/casten-clips-dea2",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "asura",
+      "url": "https://devfolio.co/projects/assura-network-a2f4",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Private Payments & Transactions",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "z-ray",
+      "url": "https://devfolio.co/projects/zray-85f8",
+      "awards": [
+        {
+          "sponsor": "Tachyon",
+          "track": "Zcash Data & Analytics",
+          "amount": "$500"
+        }
+      ],
+      "totalUSD": 500,
+      "otherPrizes": []
+    },
+    {
+      "name": "MemoryVault",
+      "url": "https://devfolio.co/projects/nillion-memory-vault-272d",
+      "awards": [
+        {
+          "sponsor": "Nillion",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "30,000 NIL"
+        }
+      ],
+      "totalUSD": 0,
+      "otherPrizes": [
+        "30,000 NIL"
+      ]
+    },
+    {
+      "name": "Zcash Analystics",
+      "url": "https://devfolio.co/projects/zcash-analystics-d866",
+      "awards": [
+        {
+          "sponsor": "Nillion",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "5,000 NIL"
+        }
+      ],
+      "totalUSD": 0,
+      "otherPrizes": [
+        "5,000 NIL"
+      ]
+    },
+    {
+      "name": "Zscreener",
+      "url": "https://devfolio.co/projects/zscreener-0762",
+      "awards": [
+        {
+          "sponsor": "Nillion",
+          "track": "Zcash Data & Analytics",
+          "amount": "30,000 NIL"
+        }
+      ],
+      "totalUSD": 0,
+      "otherPrizes": [
+        "30,000 NIL"
+      ]
+    },
+    {
+      "name": "Nexa",
+      "url": "https://devfolio.co/projects/nexa-e943",
+      "awards": [
+        {
+          "sponsor": "Nillion",
+          "track": "Zcash Data & Analytics",
+          "amount": "15,000 NIL"
+        }
+      ],
+      "totalUSD": 0,
+      "otherPrizes": [
+        "15,000 NIL"
+      ]
+    },
+    {
+      "name": "Obscura",
+      "url": "https://devfolio.co/projects/obscura-12d1",
+      "awards": [
+        {
+          "sponsor": "Nillion",
+          "track": "Zcash Data & Analytics",
+          "amount": "5,000 NIL"
+        }
+      ],
+      "totalUSD": 0,
+      "otherPrizes": [
+        "5,000 NIL"
+      ]
+    },
+    {
+      "name": "Z.U.L.U",
+      "url": "https://devfolio.co/projects/zulu-d41f",
+      "awards": [
+        {
+          "sponsor": "Starknet",
+          "amount": "$5000"
+        },
+        {
+          "sponsor": "Network State",
+          "amount": "$1500 credits"
+        }
+      ],
+      "totalUSD": 5000,
+      "otherPrizes": [
+        "$1500 credits"
+      ]
+    }
+  ]
+}

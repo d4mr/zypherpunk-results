@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { Hero } from '../components/Hero';
+import { ProjectGrid } from '../components/ProjectGrid';
+import { getAllProjects, getMeta, type ProjectWithAwards } from '../lib/awards';
+import { fetchProjects, extractSlugFromUrl, type Project } from '../lib/devfolio';
+
+// Get all award data
+const allAwards = getAllProjects();
+const meta = getMeta();
+
+// Extract slugs and fetch all projects at build time
+const slugs = allAwards
+  .map(award => extractSlugFromUrl(award.url))
+  .filter((slug): slug is string => slug !== null);
+
+const projectsMap = await fetchProjects(slugs);
+
+// Combine award data with Devfolio data
+const projectsWithDevfolio: Array<{ devfolio: Project; awards: ProjectWithAwards }> = [];
+
+for (const award of allAwards) {
+  const slug = extractSlugFromUrl(award.url);
+  if (!slug) continue;
+  
+  const devfolioData = projectsMap.get(slug);
+  if (devfolioData) {
+    projectsWithDevfolio.push({
+      devfolio: devfolioData,
+      awards: award,
+    });
+  }
+}
+
+// Sort by total USD descending (default)
+projectsWithDevfolio.sort((a, b) => (b.awards.totalUSD || 0) - (a.awards.totalUSD || 0));
+---
+
+<Layout title="Zypherpunk Hackathon Winners">
+  <Header />
+  
+  <main>
+    <Hero 
+      client:load
+      totalProjects={meta.totalProjects}
+      totalAwards={meta.totalAwards}
+      totalUSD={meta.totalUSD}
+    />
+    
+    <section class="mx-auto max-w-7xl px-6 py-16">
+      <div class="mb-8">
+        <h2 class="font-display text-2xl text-white">
+          Winning Projects
+        </h2>
+      </div>
+      
+      <ProjectGrid client:load projects={projectsWithDevfolio} />
+    </section>
+  </main>
+  
+  <footer class="border-t border-gray-800 py-12">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <p class="text-sm text-gray-500">
+          Data sourced from <a href="https://devfolio.co" class="text-gray-400 hover:text-white transition-colors">Devfolio</a>
+        </p>
+        <p class="font-mono text-xs text-gray-600">
+          Zypherpunk 2025
+        </p>
+      </div>
+    </div>
+  </footer>
+</Layout>
