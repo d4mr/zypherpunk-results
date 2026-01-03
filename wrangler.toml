@@ -1,9 +1,2 @@
 name = "zypherpunk-results"
 pages_build_output_dir = "dist"
-
-[build]
-command = "bun install && bun run build"
-
-[build.environment]
-SKIP_DEPENDENCY_INSTALL = "true"
-NODE_VERSION = "22"
