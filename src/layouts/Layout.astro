@@ -4,9 +4,18 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
 
-const { title, description = "Zypherpunk Hackathon Winners - Privacy-focused projects building the future of Zcash" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://zypherpunk.d4mr.com");
+
+const { 
+  title, 
+  description = "Explore 88 winning projects from the Zypherpunk Hackathon. $189K distributed across 140 awards for privacy-focused Zcash projects.",
+  image = "/og.webp"
+} = Astro.props;
+
+const ogImageURL = new URL(image, Astro.site || "https://zypherpunk.d4mr.com").toString();
 ---
 
 <!DOCTYPE html>
@@ -14,13 +23,44 @@ const { title, description = "Zypherpunk Hackathon Winners - Privacy-focused pro
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <link rel="canonical" href={canonicalURL} />
     
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Zypherpunk, Zcash, hackathon, privacy, crypto, blockchain, zero-knowledge, winners, projects" />
+    <meta name="author" content="d4mr" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="zypherpunk" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Zypherpunk Winners" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    
+    <!-- Theme -->
+    <meta name="theme-color" content="#050505" />
+    <meta name="color-scheme" content="dark" />
   </head>
   <body class="min-h-screen">
     <!-- Ambient background effects -->
