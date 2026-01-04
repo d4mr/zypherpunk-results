@@ -1,4 +1,5 @@
-import * as Tooltip from "@radix-ui/react-tooltip";
+import * as Popover from "@radix-ui/react-popover";
+import { useState, useEffect } from "react";
 
 interface SponsorBounty {
   track: string;
@@ -29,17 +30,25 @@ interface AwardCardProps {
 }
 
 export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: AwardCardProps) {
-  const hasTooltip = !!sponsorData;
+  const hasPopover = !!sponsorData;
+  const [isOpen, setIsOpen] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   const cardContent = (
     <div
       className={`
-        flex items-center justify-between rounded-lg border px-4 py-3 transition-all
-        ${hasTooltip 
-          ? "border-gray-800 bg-gray-900/50 hover:border-accent/50 hover:bg-gray-900/80 cursor-help" 
+        flex items-center justify-between rounded-lg border px-4 py-3 transition-all !outline-none
+        ${hasPopover 
+          ? "border-gray-800 bg-gray-900/50 hover:border-accent/50 hover:bg-gray-900/80 cursor-pointer" 
           : "border-gray-800 bg-gray-900/50"
         }
       `}
+      onMouseEnter={() => !isTouchDevice && setIsOpen(true)}
+      onMouseLeave={() => !isTouchDevice && setIsOpen(false)}
     >
       <div className="flex items-center gap-3">
         {sponsorData && (
@@ -67,7 +76,7 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
       </div>
       <div className="flex items-center gap-2 shrink-0 ml-3">
         <span className="font-mono text-sm font-bold text-gold">{amount}</span>
-        {hasTooltip && (
+        {hasPopover && (
           <svg 
             className="h-3.5 w-3.5 text-muted-foreground"
             viewBox="0 0 16 16" 
@@ -80,21 +89,30 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
     </div>
   );
 
-  if (!hasTooltip) {
+  if (!hasPopover) {
     return cardContent;
   }
 
   return (
-    <Tooltip.Root delayDuration={200}>
-      <Tooltip.Trigger asChild>
+    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Popover.Trigger asChild>
         {cardContent}
-      </Tooltip.Trigger>
-      <Tooltip.Portal>
-        <Tooltip.Content
-          className="z-50 w-96 rounded-2xl border border-gray-700 bg-gray-900 shadow-2xl shadow-black/60 animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
-          sideOffset={12}
+      </Popover.Trigger>
+      <Popover.Portal>
+        <Popover.Content
+          className="z-50 w-[calc(100vw-2rem)] max-w-96 rounded-2xl ring-1 ring-accent/30 bg-gray-900 shadow-2xl shadow-black/60 !outline-none animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2"
+          sideOffset={8}
           side="top"
           align="center"
+          collisionPadding={16}
+          onMouseEnter={() => !isTouchDevice && setIsOpen(true)}
+          onMouseLeave={() => !isTouchDevice && setIsOpen(false)}
+          onPointerDownOutside={(e) => {
+            // On touch, allow clicking outside to close
+            if (isTouchDevice) return;
+            // On desktop, prevent closing when mouse leaves
+            e.preventDefault();
+          }}
         >
           <a 
             href={`/sponsor/${sponsorData.id}`}
@@ -125,7 +143,7 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
             {/* Track-specific bounty info */}
             {bountyData ? (
               <div className="space-y-3">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2.5 flex-wrap">
                   <span className={`inline-flex items-center rounded-md px-2 py-1 text-[11px] font-medium uppercase tracking-wide ${
                     bountyData.type === "project-specific" 
                       ? "bg-accent/15 text-accent" 
@@ -163,10 +181,10 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
             )}
           </a>
 
-          <Tooltip.Arrow className="fill-gray-700" width={14} height={7} />
-        </Tooltip.Content>
-      </Tooltip.Portal>
-    </Tooltip.Root>
+          <Popover.Arrow className="fill-gray-900" width={14} height={7} />
+        </Popover.Content>
+      </Popover.Portal>
+    </Popover.Root>
   );
 }
 
@@ -185,25 +203,23 @@ export function AwardsSection({ awards, sponsorsMap, bountiesMap }: AwardsSectio
   if (awards.length === 0) return null;
 
   return (
-    <Tooltip.Provider delayDuration={200}>
-      <section className="mb-10">
-        <h2 className="mb-4 font-display text-xl text-white">Awards</h2>
-        <div className="grid gap-2 sm:grid-cols-2">
-          {awards.map((award, i) => {
-            const key = `${award.sponsor}-${award.track || ""}`;
-            return (
-              <AwardCard
-                key={`${award.sponsor}-${i}`}
-                sponsor={award.sponsor}
-                track={award.track}
-                amount={award.amount}
-                sponsorData={sponsorsMap[award.sponsor]}
-                bountyData={bountiesMap[key]}
-              />
-            );
-          })}
-        </div>
-      </section>
-    </Tooltip.Provider>
+    <section className="mb-10">
+      <h2 className="mb-4 font-display text-xl text-white">Awards</h2>
+      <div className="grid gap-2 sm:grid-cols-2">
+        {awards.map((award, i) => {
+          const key = `${award.sponsor}-${award.track || ""}`;
+          return (
+            <AwardCard
+              key={`${award.sponsor}-${i}`}
+              sponsor={award.sponsor}
+              track={award.track}
+              amount={award.amount}
+              sponsorData={sponsorsMap[award.sponsor]}
+              bountyData={bountiesMap[key]}
+            />
+          );
+        })}
+      </div>
+    </section>
   );
 }
