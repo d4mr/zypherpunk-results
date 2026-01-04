@@ -7,7 +7,7 @@ const HTML = `
 <head>
   <meta charset="UTF-8">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap');
     
     * {
       margin: 0;
@@ -104,7 +104,7 @@ const HTML = `
     }
     
     .title {
-      font-family: Georgia, serif;
+      font-family: 'Instrument Serif', Georgia, serif;
       font-size: 92px;
       font-style: italic;
       font-weight: 400;
@@ -119,7 +119,7 @@ const HTML = `
     }
     
     .subtitle {
-      font-family: Georgia, serif;
+      font-family: 'Instrument Serif', Georgia, serif;
       font-size: 92px;
       font-weight: 400;
       color: #d4d4d4;
