@@ -28,7 +28,7 @@ export function ProjectGrid({ projects }: Props) {
 
       {/* Results count */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           {filteredProjects.length === searchableProjects.length ? (
             <>Showing all {filteredProjects.length} projects</>
           ) : (
@@ -63,7 +63,7 @@ export function ProjectGrid({ projects }: Props) {
             className="flex flex-col items-center justify-center rounded-lg border border-gray-800 bg-gray-900/50 py-16"
           >
             <svg
-              className="mb-4 h-12 w-12 text-gray-600"
+              className="mb-4 h-12 w-12 text-muted-foreground"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -76,7 +76,7 @@ export function ProjectGrid({ projects }: Props) {
               />
             </svg>
             <p className="text-lg font-medium text-gray-400">No projects found</p>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Try adjusting your search or filters
             </p>
           </motion.div>

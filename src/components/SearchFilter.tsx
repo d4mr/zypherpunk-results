@@ -101,7 +101,7 @@ export function SearchFilter({ projects, onResults }: Props) {
           <div className="relative">
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
               <svg
-                className="h-5 w-5 text-gray-500 transition-colors group-focus-within:text-accent"
+                className="h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-accent"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -124,14 +124,14 @@ export function SearchFilter({ projects, onResults }: Props) {
               {query && (
                 <button
                   onClick={() => setQuery("")}
-                  className="rounded p-1 text-gray-500 transition-colors hover:bg-gray-800 hover:text-gray-300"
+                  className="rounded p-1 text-muted-foreground transition-colors hover:bg-gray-800 hover:text-gray-300"
                 >
                   <svg className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
                   </svg>
                 </button>
               )}
-              <kbd className="hidden rounded-md border border-gray-700/50 bg-gray-800/50 px-2 py-1 font-mono text-[10px] text-gray-500 sm:inline-block">
+              <kbd className="hidden rounded-md border border-gray-700/50 bg-gray-800/50 px-2 py-1 font-mono text-[10px] text-muted-foreground sm:inline-block">
                 ⌘K
               </kbd>
             </div>
@@ -262,7 +262,7 @@ export function SearchFilter({ projects, onResults }: Props) {
       {/* Active filters display */}
       {activeFilterCount > 0 && !showFilters && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm text-gray-500">Active filters:</span>
+          <span className="text-sm text-muted-foreground">Active filters:</span>
           {selectedSponsors.map((sponsor) => (
             <button
               key={sponsor}

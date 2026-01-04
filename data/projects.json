@@ -10,7 +10,7 @@
       "url": "https://devfolio.co/projects/funding-anonymous-solana-account-zcash-router-sdk-9791",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -25,6 +25,7 @@
         },
         {
           "sponsor": "Helius",
+          "track": "Cross-Chain Privacy Solutions",
           "amount": "$7000"
         }
       ],
@@ -68,7 +69,7 @@
           "amount": "$5000"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -100,6 +101,7 @@
         },
         {
           "sponsor": "Helius",
+          "track": "Cross-Chain Privacy Solutions",
           "amount": "$3000"
         }
       ],
@@ -256,7 +258,7 @@
       "url": "https://devfolio.co/projects/cipherscan-fa99",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -300,7 +302,7 @@
           "amount": "$3500"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -335,7 +337,7 @@
           "amount": "$3000"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -527,7 +529,7 @@
           "amount": "$500"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -549,7 +551,7 @@
       "url": "https://devfolio.co/projects/bridger-c23a",
       "awards": [
         {
-          "sponsor": "Polygon Miden",
+          "sponsor": "Miden",
           "amount": "$2000"
         }
       ],
@@ -590,7 +592,7 @@
           "amount": "$500"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -658,7 +660,7 @@
       "url": "https://devfolio.co/projects/rime-d957",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -675,7 +677,7 @@
       "url": "https://devfolio.co/projects/secure-legion-6c44",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -692,7 +694,7 @@
       "url": "https://devfolio.co/projects/zord-protocol-4081",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -739,7 +741,7 @@
           "amount": "Honorary Mention (Not rewarded - made by core team member)"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -761,7 +763,7 @@
           "amount": "$500"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -798,7 +800,7 @@
       "url": "https://devfolio.co/projects/zcash-explorer-35fa",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -815,7 +817,7 @@
       "url": "https://devfolio.co/projects/raven-bridge-00ab",
       "awards": [
         {
-          "sponsor": "Polygon Miden",
+          "sponsor": "Miden",
           "amount": "$1000"
         }
       ],
@@ -944,7 +946,7 @@
       "url": "https://devfolio.co/projects/openbands-f783",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -961,7 +963,7 @@
       "url": "https://devfolio.co/projects/zcash-lessgreater-aztec-bridge-9238",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -978,7 +980,7 @@
       "url": "https://devfolio.co/projects/zerostate-8597",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -995,7 +997,7 @@
       "url": "https://devfolio.co/projects/zighway-0df2",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -1012,7 +1014,7 @@
       "url": "https://devfolio.co/projects/zkprof-173f",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -1029,7 +1031,7 @@
       "url": "https://devfolio.co/projects/shield-cae1",
       "awards": [
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         },
         {
@@ -1144,7 +1146,7 @@
       "url": "https://devfolio.co/projects/midenzcash-0eef",
       "awards": [
         {
-          "sponsor": "Polygon Miden",
+          "sponsor": "Miden",
           "amount": "$500"
         }
       ],
@@ -1156,7 +1158,7 @@
       "url": "https://devfolio.co/projects/shieldbridge-e164",
       "awards": [
         {
-          "sponsor": "Polygon Miden",
+          "sponsor": "Miden",
           "amount": "$500"
         }
       ],
@@ -1168,7 +1170,7 @@
       "url": "https://devfolio.co/projects/zephyr-wallet-d529",
       "awards": [
         {
-          "sponsor": "Polygon Miden",
+          "sponsor": "Miden",
           "amount": "$500"
         }
       ],
@@ -1180,7 +1182,7 @@
       "url": "https://devfolio.co/projects/veilbridge-43ff",
       "awards": [
         {
-          "sponsor": "Polygon Miden",
+          "sponsor": "Miden",
           "amount": "$500"
         }
       ],
@@ -1362,7 +1364,7 @@
           "amount": "$5000"
         },
         {
-          "sponsor": "Network State",
+          "sponsor": "Network School",
           "amount": "$1500 credits"
         }
       ],

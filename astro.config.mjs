@@ -10,5 +10,15 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react()]
+  integrations: [react()],
+
+  image: {
+    domains: ['devfolio.co', 'assets.devfolio.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.devfolio.co'
+      }
+    ]
+  }
 });

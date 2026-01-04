@@ -1,0 +1,300 @@
+---
+import { getImage } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SponsorProjectGrid } from '../../components/SponsorProjectGrid';
+import { getAllSponsors, type Sponsor, type SponsorBounty } from '../../lib/sponsors';
+import { getProjectsWithAwardsFromSponsor, type ProjectAward, type ProjectWithAwards } from '../../lib/awards';
+import { fetchProjects, extractSlugFromUrl, getImageUrl, type Project } from '../../lib/devfolio';
+import type { SearchableProject } from '../../lib/search';
+
+export async function getStaticPaths() {
+  const sponsors = getAllSponsors();
+  
+  return sponsors.map(sponsor => ({
+    params: { id: sponsor.id },
+    props: { sponsor }
+  }));
+}
+
+interface Props {
+  sponsor: Sponsor;
+}
+
+const { sponsor } = Astro.props;
+
+// Slugify function for track URLs
+function slugify(track: string): string {
+  return track
+    .toLowerCase()
+    .replace(/[&]/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Get all name variations to match against awards
+const nameVariations = [sponsor.name, sponsor.displayName, sponsor.id];
+
+// Get projects that won from this sponsor
+const winningProjectsData = getProjectsWithAwardsFromSponsor(nameVariations);
+
+// Fetch Devfolio data for all winning projects
+const slugs = winningProjectsData
+  .map(({ project }) => extractSlugFromUrl(project.url))
+  .filter((slug): slug is string => slug !== null);
+
+const devfolioMap = await fetchProjects(slugs);
+
+// Optimize images
+async function optimizeImage(url: string | null, width: number, height: number): Promise<string | null> {
+  if (!url) return null;
+  const fullUrl = getImageUrl(url);
+  if (!fullUrl) return null;
+  
+  try {
+    const img = await getImage({ src: fullUrl, width, height, format: 'webp' });
+    return img.src;
+  } catch {
+    return fullUrl;
+  }
+}
+
+// Build SearchableProject objects with optimized images
+const searchableProjects: Array<SearchableProject & { sponsorAwards: ProjectAward[] }> = await Promise.all(
+  winningProjectsData.map(async ({ project, awards }) => {
+    const slug = extractSlugFromUrl(project.url);
+    const devfolio = slug ? devfolioMap.get(slug) : null;
+    
+    if (!devfolio) {
+      // Create minimal devfolio object for projects not found
+      return {
+        slug: slug || project.url,
+        name: project.name,
+        tagline: "",
+        builderNames: [],
+        builderUsernames: [],
+        hashtags: [],
+        sponsors: awards.map(a => a.sponsor),
+        tracks: awards.map(a => a.track).filter(Boolean) as string[],
+        totalUSD: project.totalUSD,
+        awardCount: project.awards.length,
+        devfolio: {
+          name: project.name,
+          slug: slug || "",
+          tagline: null,
+          description: null,
+          _cover_img: null,
+          _favicon: null,
+          _optimizedCover: null,
+          _optimizedFavicon: null,
+          video_url: null,
+          demo_url: null,
+          source_code_url: null,
+          links: null,
+          pictures: null,
+          created_at: "",
+          builders: [],
+          hashtags: [],
+        } as Project,
+        awards: project,
+        sponsorAwards: awards,
+      };
+    }
+    
+    // Optimize images
+    const [optimizedCover, optimizedFavicon] = await Promise.all([
+      optimizeImage(devfolio._cover_img, 400, 225),
+      optimizeImage(devfolio._favicon, 80, 80),
+    ]);
+    
+    // Optimize builder avatars
+    const optimizedBuilders = await Promise.all(
+      (devfolio.builders || []).map(async (builder) => ({
+        ...builder,
+        _optimizedAvatar: await optimizeImage(builder._profile_image, 48, 48),
+      }))
+    );
+    
+    const enrichedDevfolio: Project = {
+      ...devfolio,
+      _optimizedCover: optimizedCover,
+      _optimizedFavicon: optimizedFavicon,
+      builders: optimizedBuilders,
+    };
+    
+    return {
+      slug: devfolio.slug,
+      name: devfolio.name,
+      tagline: devfolio.tagline || "",
+      builderNames: devfolio.builders?.map(b => `${b.first_name || ""} ${b.last_name || ""}`.trim()).filter(Boolean) || [],
+      builderUsernames: devfolio.builders?.map(b => b.username) || [],
+      hashtags: devfolio.hashtags?.map(h => h.hashtag.name) || [],
+      sponsors: [...new Set(project.awards.map(a => a.sponsor))],
+      tracks: [...new Set(project.awards.map(a => a.track).filter(Boolean) as string[])],
+      totalUSD: project.totalUSD,
+      awardCount: project.awards.length,
+      devfolio: enrichedDevfolio,
+      awards: project,
+      sponsorAwards: awards, // Awards from THIS sponsor only
+    };
+  })
+);
+
+// Get unique tracks from this sponsor's bounties
+const sponsorTracks = sponsor.bounties?.map(b => b.track).filter(t => t !== "All Tracks") || [];
+
+// Calculate total awarded
+const totalAwarded = winningProjectsData.reduce((sum, { awards }) => {
+  return sum + awards.reduce((aSum, a) => {
+    const match = a.amount.match(/\$?([\d,]+)/);
+    if (match && !a.amount.includes("NIL") && !a.amount.includes("credits") && !a.amount.includes("ZEC")) {
+      return aSum + parseInt(match[1].replace(/,/g, ""));
+    }
+    return aSum;
+  }, 0);
+}, 0);
+
+const bounties = sponsor.bounties || [];
+
+// Track colors for visual distinction
+const trackColors: Record<string, string> = {
+  "Cross-Chain Privacy Solutions": "emerald",
+  "Privacy-Preserving AI & Computation": "violet",
+  "Private Payments & Transactions": "amber",
+  "Privacy Infrastructure & Developer Tools": "sky",
+  "Self-Custody & Wallet Innovation": "rose",
+  "Private DeFi & Trading": "orange",
+  "Zcash Data & Analytics": "cyan",
+  "Privacy-Focused Content & Media": "pink",
+  "Creative Privacy Applications": "indigo",
+  "All Tracks": "gray",
+};
+---
+
+<Layout title={`${sponsor.name} - Zypherpunk Sponsor`} description={sponsor.description}>
+  <Header />
+  
+  <main class="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12">
+    <!-- Back link -->
+    <a
+      href="/"
+      class="mb-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-white"
+    >
+      <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      Back to projects
+    </a>
+
+    <!-- Sponsor Header -->
+    <div class="mb-10">
+      <div class="flex flex-wrap items-start justify-between gap-6">
+        <div class="flex items-center gap-5">
+          {sponsor.logo ? (
+            <img 
+              src={sponsor.logo} 
+              alt={sponsor.displayName}
+              class="h-16 w-16 rounded-xl border border-gray-800 bg-gray-900 object-contain p-2"
+              loading="lazy"
+            />
+          ) : (
+            <div class="flex h-16 w-16 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-2xl font-bold text-gray-400">
+              {sponsor.displayName.charAt(0)}
+            </div>
+          )}
+          <div>
+            <h1 class="font-display text-3xl text-white sm:text-4xl">
+              {sponsor.name}
+            </h1>
+            <div class="mt-1 flex items-center gap-3">
+              {sponsor.totalPrize && (
+                <span class="text-lg text-accent">
+                  {sponsor.totalPrize} {sponsor.prizeNote}
+                </span>
+              )}
+              <a
+                href={sponsor.website}
+                target="_blank"
+                rel="noopener"
+                class="inline-flex items-center gap-1.5 text-sm text-gray-400 transition-colors hover:text-white"
+              >
+                <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M6 3h7v7M13 3L6 10" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                {new URL(sponsor.website).hostname.replace("www.", "")}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {searchableProjects.length > 0 && (
+          <div class="rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-3">
+            <div class="text-sm text-muted-foreground">Awarded to {searchableProjects.length} projects</div>
+            {totalAwarded > 0 && (
+              <div class="font-mono text-xl font-bold text-gold">
+                ${totalAwarded.toLocaleString()}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      <p class="mt-6 max-w-3xl text-base leading-relaxed text-gray-400">
+        {sponsor.description}
+      </p>
+    </div>
+
+    <!-- Bounties -->
+    {bounties.length > 0 && (
+      <section class="mb-12">
+        <h2 class="mb-4 font-display text-xl text-white">Bounty Tracks</h2>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {bounties.map((bounty) => (
+            <a 
+              href={bounty.track !== "All Tracks" ? `/track/${slugify(bounty.track)}` : undefined}
+              class={`block rounded-xl border border-gray-800 bg-gray-900/50 p-5 transition-colors ${bounty.track !== "All Tracks" ? "hover:border-gray-700 hover:bg-gray-900/80 cursor-pointer" : ""}`}
+            >
+              <div class="mb-2 flex items-start justify-between gap-3">
+                <h3 class="font-medium text-white">{bounty.track}</h3>
+                <span class="shrink-0 font-mono text-sm font-bold text-accent">
+                  {bounty.amount}
+                </span>
+              </div>
+              <p class="mb-3 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                {bounty.description}
+              </p>
+              {bounty.prizes && bounty.prizes.length > 0 && (
+                <div class="flex flex-wrap gap-1">
+                  {bounty.prizes.map((prize) => (
+                    <span class="rounded bg-gray-800 px-1.5 py-0.5 font-mono text-xs text-gray-400">
+                      {prize}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Winning Projects with track grouping -->
+    {searchableProjects.length > 0 && (
+      <SponsorProjectGrid 
+        client:load
+        projects={searchableProjects}
+        sponsorTracks={sponsorTracks}
+        trackColors={trackColors}
+      />
+    )}
+
+    {searchableProjects.length === 0 && (
+      <div class="rounded-xl border border-gray-800 bg-gray-900/30 px-6 py-12 text-center">
+        <p class="text-muted-foreground">No winning projects recorded for this sponsor yet.</p>
+      </div>
+    )}
+  </main>
+  
+  <Footer />
+</Layout>

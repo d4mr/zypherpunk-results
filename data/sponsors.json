@@ -1,0 +1,641 @@
+{
+  "sponsors": [
+    {
+      "id": "near",
+      "name": "NEAR Protocol",
+      "displayName": "NEAR",
+      "website": "https://near.org",
+      "logo": "https://near.org/favicon.ico",
+      "totalPrize": "$50,000",
+      "prizeNote": "in NEAR tokens",
+      "description": "NEAR is a blockchain platform designed for usability and scalability. They're looking for cross-chain privacy solutions, privacy-preserving AI, and private payment solutions using NEAR intents SDK.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$20,000",
+          "type": "project-specific",
+          "description": "Use the NEAR intents SDK and other NEAR solutions to connect Zcash with multiple chains and champion access to DeFi for Zcash users privately.",
+          "prizes": ["$5k", "$5k", "$4k", "$3k", "$3k"]
+        },
+        {
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$25,000",
+          "type": "project-specific",
+          "description": "Use NEAR AI toolings to leverage verifiable & private TEE based inference to build Agentic models that allow users to spend their ZEC wisely, and privately.",
+          "prizes": ["$5k", "$5k", "$5k", "$4k", "$3k", "$3k"]
+        },
+        {
+          "track": "Private Payments & Transactions",
+          "amount": "$5,000",
+          "type": "project-specific",
+          "description": "Build Zcash related private real world payment solutions using NEAR intents and related technologies.",
+          "prizes": ["$3k", "$2k"]
+        }
+      ]
+    },
+    {
+      "id": "tachyon",
+      "name": "Project Tachyon",
+      "displayName": "Tachyon",
+      "website": "https://github.com/tachyon-zcash",
+      "logo": "https://github.githubassets.com/favicons/favicon.svg",
+      "totalPrize": "$35,000",
+      "prizeNote": "USD",
+      "description": "Project Tachyon is contributing $35,000 split evenly across all nine hackathon tracks. This support enables builders across every category to develop innovative privacy-preserving solutions on Zcash.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Build solutions that enable private cross-chain transactions and interoperability."
+        },
+        {
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Develop AI applications and computation solutions that protect user privacy."
+        },
+        {
+          "track": "Private Payments & Transactions",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Create payment solutions that prioritize transaction privacy."
+        },
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Build developer tools and infrastructure for privacy-preserving applications."
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Innovate on wallet UX and self-custody solutions with privacy focus."
+        },
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Build privacy-preserving DeFi protocols and trading solutions."
+        },
+        {
+          "track": "Zcash Data & Analytics",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Create analytics tools that respect privacy while providing insights."
+        },
+        {
+          "track": "Privacy-Focused Content & Media",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Produce content that educates about privacy technology."
+        },
+        {
+          "track": "Creative Privacy Applications",
+          "amount": "~$3,900",
+          "type": "general",
+          "description": "Build innovative applications that push the boundaries of privacy tech."
+        }
+      ]
+    },
+    {
+      "id": "starknet",
+      "name": "Starknet",
+      "displayName": "Starknet",
+      "website": "https://starknet.io",
+      "logo": "https://starknet.io/favicon.ico",
+      "totalPrize": "$35,000",
+      "prizeNote": "USD",
+      "description": "Starknet is a permissionless decentralized Layer 2 network. They're looking for creative privacy applications, developer tools, and wallet innovations built on Ztarknet.",
+      "bounties": [
+        {
+          "track": "Creative Privacy Applications",
+          "amount": "$26,000",
+          "type": "project-specific",
+          "description": "Build innovative privacy applications including a 'Wildcard' submission ($20k), ZumpFun privacy-enabled launchpad ($5k), or Micropayments on Zashi Wallet ($1k).",
+          "prizes": ["$20k Wildcard", "$5k ZumpFun", "$1k Micropayments"]
+        },
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$6,000",
+          "type": "project-specific",
+          "description": "Build developer tooling on top of existing Ztarknet implementation or cross-chain messaging between Starknet and Zcash.",
+          "prizes": ["$3k Ztarknet tooling", "$3k Cross-chain messaging"]
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Create a single wallet interface with multichain capabilities or build atomic swaps between Zec and Starknet."
+        }
+      ]
+    },
+    {
+      "id": "network-school",
+      "name": "Network School",
+      "displayName": "Network School",
+      "website": "https://ns.com",
+      "logo": "https://ns.com/favicon.ico",
+      "totalPrize": "$30,000",
+      "prizeNote": "in Memberships",
+      "description": "Network School offers an all-inclusive package covering accommodation, food, coworking, gym, and events on a solarpunk island near Singapore. They're looking for zk-Passport and zk-Census solutions.",
+      "bounties": [
+        {
+          "track": "All Tracks",
+          "amount": "$30,000",
+          "type": "general",
+          "description": "Looking for zk-Passport (privacy-preserving cryptoidentity solutions) and zk-Census (measuring population for startup societies without doxxing members)."
+        }
+      ]
+    },
+    {
+      "id": "mina",
+      "name": "Mina Protocol",
+      "displayName": "Mina",
+      "website": "https://minaprotocol.com",
+      "logo": "https://minaprotocol.com/favicon.ico",
+      "totalPrize": "$20,000",
+      "prizeNote": "in MINA",
+      "description": "Mina Protocol is the world's lightest blockchain. They're looking for cross-chain bridges, privacy infrastructure, wallet innovation, and educational content combining Mina and Zcash.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$8,000",
+          "type": "project-specific",
+          "description": "Build a privacy-preserving bridge between Zcash and Mina or cross-chain privacy solutions using Mina.",
+          "prizes": ["$3k bridge (x2)", "$2k best solution"]
+        },
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$8,000",
+          "type": "project-specific",
+          "description": "Build a privacy-first application framework using merkle trees, nullifiers, semaphore, etc.",
+          "prizes": ["$3k framework (x2)", "$2k best tool"]
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Build a multi-chain privacy wallet supporting Mina and Zcash."
+        },
+        {
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$1,000",
+          "type": "project-specific",
+          "description": "Create content explaining the cryptography behind Zcash and Mina (Pasta curves, verifiable privacy).",
+          "prizes": ["$500", "$500"]
+        }
+      ]
+    },
+    {
+      "id": "axelar",
+      "name": "Axelar Network",
+      "displayName": "Axelar",
+      "website": "https://axelar.network",
+      "logo": "https://cdn.prod.website-files.com/65d241582635a0233e69af40/661c7db53a5fd239efa1fa8a_favicon.png",
+      "totalPrize": "$20,000",
+      "prizeNote": "worth of AXL",
+      "description": "Axelar delivers secure cross-chain communication. They're looking for cross-chain privacy solutions and privacy-preserving AI & computation.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$10,000",
+          "type": "general",
+          "description": "Build innovative cross-chain privacy solutions that bridge multiple blockchain ecosystems while preserving user privacy."
+        },
+        {
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$10,000",
+          "type": "general",
+          "description": "Develop privacy-focused AI applications and computation solutions that protect user data while maintaining functionality."
+        }
+      ]
+    },
+    {
+      "id": "arcium",
+      "name": "Arcium",
+      "displayName": "Arcium",
+      "website": "https://arcium.com",
+      "logo": "https://arcium.com/favicon.ico",
+      "totalPrize": "$10,500",
+      "prizeNote": "USD",
+      "description": "Arcium provides encrypted compute on Solana. They're looking for privacy-preserving DeFi applications including dark pools, private perpetuals, and private lending.",
+      "bounties": [
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "$10,500",
+          "type": "project-specific",
+          "description": "Build privacy-preserving DeFi applications using Arcium's encrypted compute. Includes Dark Pools ($3.5k), Private Perpetuals ($3.5k), and Private Lending ($3.5k).",
+          "prizes": ["$3.5k Dark Pools", "$3.5k Perpetuals", "$3.5k Lending"]
+        }
+      ]
+    },
+    {
+      "id": "aztec",
+      "name": "Aztec Labs",
+      "displayName": "Aztec",
+      "website": "https://aztec.network",
+      "logo": "https://aztec.network/favicon.ico",
+      "totalPrize": "$10,000",
+      "prizeNote": "USD",
+      "description": "Aztec is building the encrypted Ethereum. They're looking for private bridges, wallets, and DeFi solutions connecting Zcash and Aztec.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Build a bi-directional private bridge between Zcash and Aztec."
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Build a smart contract wallet on Aztec compatible with both Zcash and Aztec."
+        },
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Build a Zcash-backed stablecoin on Aztec with private yield generation."
+        },
+        {
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$1,000",
+          "type": "general",
+          "description": "Produce amazing content around the importance of privacy.",
+          "prizes": ["$500", "$500"]
+        }
+      ]
+    },
+    {
+      "id": "ecc",
+      "name": "Electric Coin Company",
+      "displayName": "ECC",
+      "website": "https://electriccoin.co",
+      "logo": "https://electriccoin.co/favicon.ico",
+      "totalPrize": "$10,000",
+      "prizeNote": "USD",
+      "description": "ECC is the creator and steward of Zcash. They're looking for libraries enabling transparent-only Zcash users to send shielded outputs using the PCZT API.",
+      "bounties": [
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$10,000",
+          "type": "project-specific",
+          "description": "Implement a library in TypeScript, Go, Kotlin, or Java that enables transparent-only Zcash users to send shielded outputs using the PCZT API.",
+          "prizes": ["$5,000", "$3,000", "$2,000"]
+        }
+      ]
+    },
+    {
+      "id": "osmosis",
+      "name": "Osmosis",
+      "displayName": "Osmosis",
+      "website": "https://osmosis.zone",
+      "logo": "https://osmosis.zone/favicon.ico",
+      "totalPrize": "$10,000",
+      "prizeNote": "USD",
+      "description": "Osmosis is the leading cross-chain AMM. They're looking for cross-chain privacy solutions, wallet innovation, private payments, and privacy content.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$3,000",
+          "type": "general",
+          "description": "Build cross-chain privacy solutions that integrate Zcash with other blockchain ecosystems."
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3,000",
+          "type": "general",
+          "description": "Create innovative wallet solutions and self-custody tools that enhance privacy and user experience."
+        },
+        {
+          "track": "Private Payments & Transactions",
+          "amount": "$3,000",
+          "type": "general",
+          "description": "Develop payment solutions and transaction systems that prioritize privacy and security."
+        },
+        {
+          "track": "Privacy-Focused Content & Media",
+          "amount": "$1,000",
+          "type": "general",
+          "description": "Create content that educates, entertains, or inspires around privacy technology.",
+          "prizes": ["$500", "$500"]
+        }
+      ]
+    },
+    {
+      "id": "miden",
+      "name": "Miden",
+      "displayName": "Miden",
+      "website": "https://miden.xyz",
+      "logo": "https://miden.xyz/favicon.ico",
+      "totalPrize": "$10,000",
+      "prizeNote": "USD",
+      "description": "Polygon Miden is a ZK rollup for private, high-throughput applications. They're looking for private bridges and wallet integration between Zcash and Miden.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$5,000",
+          "type": "project-specific",
+          "description": "Build a private bridge between Zcash testnet and Miden testnet.",
+          "prizes": ["$3,000", "$2,000"]
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$5,000",
+          "type": "project-specific",
+          "description": "Integrate Zcash into Miden's WebSDK and the Miden Browser Wallet.",
+          "prizes": ["$3,000", "$2,000"]
+        }
+      ]
+    },
+    {
+      "id": "fhenix",
+      "name": "Fhenix",
+      "displayName": "Fhenix",
+      "website": "https://fhenix.io",
+      "logo": "https://fhenix.io/favicon.ico",
+      "totalPrize": "$15,000",
+      "prizeNote": "USD",
+      "description": "Fhenix enables Fully Homomorphic Encryption (FHE) on blockchain. They're looking for FHE-based DeFi, analytics, infrastructure, wallets, and creative applications.",
+      "bounties": [
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Build privacy-preserving DeFi applications using FHE."
+        },
+        {
+          "track": "Zcash Data & Analytics",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Use FHE to create private aggregated analytics and oracles for Zcash data."
+        },
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Use FHE to generate proof of innocence and build privacy infrastructure tools."
+        },
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Create innovative wallet solutions using FHE technology."
+        },
+        {
+          "track": "Creative Privacy Applications",
+          "amount": "$3,000",
+          "type": "project-specific",
+          "description": "Composability experiments - build creative privacy-preserving applications combining multiple technologies."
+        }
+      ]
+    },
+    {
+      "id": "helius",
+      "name": "Helius",
+      "displayName": "Helius",
+      "website": "https://helius.dev",
+      "logo": "https://helius.dev/favicon.ico",
+      "totalPrize": "$10,000",
+      "prizeNote": "USD",
+      "description": "Helius provides Solana's leading RPC and APIs. They're looking for Solana-Zcash cross-chain privacy solutions.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$10,000",
+          "type": "project-specific",
+          "description": "Build Solana to Zec focused solutions that enable cross-chain privacy and interoperability.",
+          "prizes": ["$7,000", "$3,000"]
+        }
+      ]
+    },
+    {
+      "id": "zcash-grants",
+      "name": "Zcash Community Grants",
+      "displayName": "ZCG",
+      "website": "https://zcashcommunitygrants.org",
+      "logo": "https://zcashcommunitygrants.org/favicon.ico",
+      "totalPrize": "$10,000",
+      "prizeNote": "USD",
+      "description": "Zcash Community Grants funds projects that benefit the Zcash ecosystem. They're looking for unstoppable private DeFi and Zcash core tooling.",
+      "bounties": [
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "$5,000",
+          "type": "general",
+          "description": "Build unstoppable private DeFi solutions that prioritize user privacy and security.",
+          "prizes": ["$3,000", "$2,000"]
+        },
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$5,000",
+          "type": "general",
+          "description": "Build software and tooling around Zcash core.",
+          "prizes": ["$2,000", "$1,000", "$1,000"]
+        }
+      ]
+    },
+    {
+      "id": "nillion",
+      "name": "Nillion",
+      "displayName": "Nillion",
+      "website": "https://nillion.com",
+      "logo": "https://nillion.com/favicon.ico",
+      "totalPrize": "50,000 NIL",
+      "prizeNote": "tokens",
+      "description": "Nillion enables private computation through nilAI (private LLMs), nilCC (confidential compute), and nilDB (private storage).",
+      "bounties": [
+        {
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "25,000 NIL",
+          "type": "project-specific",
+          "description": "Build a privacy-preserving AI app with nilAI and/or nilCC.",
+          "prizes": ["15,000 NIL", "7,500 NIL", "2,500 NIL"]
+        },
+        {
+          "track": "Zcash Data & Analytics",
+          "amount": "25,000 NIL",
+          "type": "project-specific",
+          "description": "Build a privacy-preserving data and analytics platform using nilCC and/or nilDB.",
+          "prizes": ["15,000 NIL", "7,500 NIL", "2,500 NIL"]
+        }
+      ]
+    },
+    {
+      "id": "unstoppable-wallet",
+      "name": "Unstoppable Wallet",
+      "displayName": "Unstoppable",
+      "website": "https://unstoppable.money",
+      "logo": "https://unstoppable.money/favicon.ico",
+      "totalPrize": "$5,000",
+      "prizeNote": "USD",
+      "description": "Unstoppable is a non-custodial multi-currency wallet. They're looking for next-generation wallet experiences and private DeFi integrations.",
+      "bounties": [
+        {
+          "track": "Self-Custody & Wallet Innovation",
+          "amount": "$3,000",
+          "type": "general",
+          "description": "Build next-generation wallet experiences, enhanced privacy UX, mobile-first self-custody solutions."
+        },
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "$2,000",
+          "type": "general",
+          "description": "Focus on private swaps, launchpads, privacy-preserving analytics, and integrating privacy into swap flows."
+        }
+      ]
+    },
+    {
+      "id": "pump-fun",
+      "name": "Pump Fun",
+      "displayName": "Pump.fun",
+      "website": "https://pump.fun",
+      "logo": "https://pump.fun/favicon.ico",
+      "totalPrize": "$5,000",
+      "prizeNote": "USD",
+      "description": "Pump.fun is a Solana token launchpad. They're looking for Solana-Zcash cross-chain privacy solutions.",
+      "bounties": [
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$5,000",
+          "type": "project-specific",
+          "description": "Build Solana to Zcash focused solutions that enable cross-chain privacy and interoperability.",
+          "prizes": ["$3,000", "$2,000"]
+        }
+      ]
+    },
+    {
+      "id": "gemini",
+      "name": "Gemini",
+      "displayName": "Gemini",
+      "website": "https://gemini.com",
+      "logo": "https://gemini.com/favicon.ico",
+      "totalPrize": "$5,000",
+      "prizeNote": "USD",
+      "description": "Gemini is a regulated cryptocurrency exchange. They're looking for an advanced Zcash block explorer with client-side viewing key decryption.",
+      "bounties": [
+        {
+          "track": "Zcash Data & Analytics",
+          "amount": "$5,000",
+          "type": "project-specific",
+          "description": "Build an advanced Zcash block explorer that allows users to view their shielded transactions using viewing keys entirely client-side.",
+          "prizes": ["$3,000", "$2,000"]
+        }
+      ]
+    },
+    {
+      "id": "bitlux",
+      "name": "Bitlux",
+      "displayName": "Bitlux",
+      "website": "https://bitlux.com",
+      "logo": "https://flybitlux.com/wp-content/uploads/2019/07/favicon.png",
+      "totalPrize": "10 ZEC",
+      "prizeNote": "(min $5,000 USD)",
+      "description": "Bitlux enables private crypto payments. They're looking for content that normalizes privacy and cross-chain payment solutions.",
+      "bounties": [
+        {
+          "track": "Privacy-Focused Content & Media",
+          "amount": "5 ZEC",
+          "type": "general",
+          "description": "Create content that normalizes privacy and educates about the importance of financial privacy."
+        },
+        {
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "5 ZEC",
+          "type": "general",
+          "description": "Develop payment systems that facilitate organized and methodical payment receipt and issuance in a private manner."
+        }
+      ]
+    },
+    {
+      "id": "raybot",
+      "name": "RayBot",
+      "displayName": "RayBot",
+      "website": "https://raybot.app",
+      "logo": "https://raybot.app/favicon.ico",
+      "totalPrize": "$5,000",
+      "prizeNote": "USD",
+      "description": "RayBot provides crypto trading tools. They're looking for Zcash data analytics and developer tools.",
+      "bounties": [
+        {
+          "track": "Zcash Data & Analytics",
+          "amount": "$3,000",
+          "type": "general",
+          "description": "Build applications that enable analysis of Zcash-related data, creating meaningful insights."
+        },
+        {
+          "track": "Privacy Infrastructure & Developer Tools",
+          "amount": "$2,000",
+          "type": "general",
+          "description": "Create tools that make it easier for developers to build privacy-preserving applications."
+        }
+      ]
+    },
+    {
+      "id": "noah",
+      "name": "Noah by Plena Finance",
+      "displayName": "Noah",
+      "website": "https://plena.finance",
+      "logo": "https://plena.finance/favicon.ico",
+      "totalPrize": "$2,000",
+      "prizeNote": "USDC",
+      "description": "Noah by Plena Finance provides DeFi solutions. They're looking for privacy-focused DeFi apps using Noah and MagicBlocks.",
+      "bounties": [
+        {
+          "track": "Private DeFi & Trading",
+          "amount": "$2,000",
+          "type": "project-specific",
+          "description": "Use Noah to create privacy focused DeFi or trading apps with MagicBlocks integration."
+        }
+      ]
+    },
+    {
+      "id": "star",
+      "name": "Star",
+      "displayName": "Star",
+      "website": "https://star.xyz",
+      "logo": "https://star.xyz/favicon.ico",
+      "totalPrize": "$1,500",
+      "prizeNote": "USD + pitch opportunity",
+      "description": "Star hosts The Shot, a live onchain shark tank. They're looking for innovative private payment solutions.",
+      "bounties": [
+        {
+          "track": "Private Payments & Transactions",
+          "amount": "$1,500",
+          "type": "general",
+          "description": "Build innovative private payment solutions on Zcash. The most unique application gets a chance to pitch investors on The Shot."
+        }
+      ]
+    },
+    {
+      "id": "mintlify",
+      "name": "Mintlify",
+      "displayName": "Mintlify",
+      "website": "https://mintlify.com",
+      "logo": "https://mintlify.com/favicon.ico",
+      "totalPrize": "Pro Plan",
+      "prizeNote": "(1 Year)",
+      "description": "Mintlify provides beautiful developer documentation. One category winner receives their Pro plan for a year.",
+      "bounties": [
+        {
+          "track": "All Tracks",
+          "amount": "Pro Plan (1 Year)",
+          "type": "general",
+          "description": "One category winner receives developer documentation with everything available on Mintlify's Pro plan for a year."
+        }
+      ]
+    },
+    {
+      "id": "alliance",
+      "name": "Alliance DAO",
+      "displayName": "Alliance",
+      "website": "https://alliance.xyz",
+      "logo": "https://alliance.xyz/favicon.ico",
+      "totalPrize": null,
+      "prizeNote": "Accelerator Partner",
+      "description": "Alliance is the leading crypto accelerator, providing funding and mentorship to top crypto startups."
+    }
+  ]
+}

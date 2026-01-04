@@ -1,6 +1,4 @@
-import { motion } from "motion/react";
 import type { SearchableProject } from "../lib/search";
-import { getImageUrl } from "../lib/devfolio";
 
 interface Props {
   project: SearchableProject;
@@ -8,21 +6,15 @@ interface Props {
 }
 
 export function ProjectCard({ project, index = 0 }: Props) {
-  const { devfolio, awards } = project;
-  const coverImg = getImageUrl(devfolio._cover_img);
-  const favicon = getImageUrl(devfolio._favicon);
+  const { devfolio } = project;
+  // Use optimized images (set at build time), these are already webp URLs
+  const coverImg = devfolio._optimizedCover ?? null;
+  const favicon = devfolio._optimizedFavicon ?? null;
   const builders = devfolio.builders || [];
 
   return (
-    <motion.a
+    <a
       href={`/project/${devfolio.slug}`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.3,
-        delay: Math.min(index * 0.03, 0.3),
-        ease: [0.25, 0.1, 0.25, 1],
-      }}
       className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-800 bg-gray-900/50 transition-colors duration-150 hover:border-gray-700 hover:bg-gray-900/80"
     >
       {/* Image */}
@@ -66,7 +58,7 @@ export function ProjectCard({ project, index = 0 }: Props) {
               className="h-10 w-10 shrink-0 rounded-lg border border-gray-800 bg-gray-800 object-cover"
             />
           ) : (
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-800 bg-gray-800 font-display text-lg italic text-gray-600">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-gray-800 bg-gray-800 font-display text-lg italic text-muted-foreground">
               {devfolio.name.charAt(0)}
             </div>
           )}
@@ -87,7 +79,7 @@ export function ProjectCard({ project, index = 0 }: Props) {
             </div>
 
             {devfolio.tagline && (
-              <p className="line-clamp-2 text-sm leading-relaxed text-gray-500">
+              <p className="line-clamp-2 text-sm leading-relaxed text-muted-foreground">
                 {devfolio.tagline}
               </p>
             )}
@@ -108,9 +100,9 @@ export function ProjectCard({ project, index = 0 }: Props) {
                   builder.username
                 }
               >
-                {builder._profile_image ? (
+                {(builder._optimizedAvatar || builder._profile_image) ? (
                   <img
-                    src={builder._profile_image}
+                    src={builder._optimizedAvatar || builder._profile_image!}
                     alt=""
                     className="h-full w-full object-cover"
                   />
@@ -120,7 +112,7 @@ export function ProjectCard({ project, index = 0 }: Props) {
               </div>
             ))}
             {builders.length > 3 && (
-              <span className="ml-1.5 text-xs text-gray-600">
+              <span className="ml-1.5 text-xs text-muted-foreground">
                 +{builders.length - 3}
               </span>
             )}
@@ -128,13 +120,13 @@ export function ProjectCard({ project, index = 0 }: Props) {
 
           {/* Sponsors */}
           {project.sponsors.length > 0 && (
-            <span className="truncate text-right font-mono text-[11px] text-gray-600">
+            <span className="truncate text-right font-mono text-[11px] text-muted-foreground">
               {project.sponsors.slice(0, 2).join(" · ")}
               {project.sponsors.length > 2 && ` +${project.sponsors.length - 2}`}
             </span>
           )}
         </div>
       </div>
-    </motion.a>
+    </a>
   );
 }

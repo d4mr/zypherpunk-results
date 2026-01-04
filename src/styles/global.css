@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors */
+  /* Base Colors */
   --color-black: #050505;
   --color-black-light: #0a0a0a;
   
@@ -14,6 +14,20 @@
   --color-gray-300: #a3a3a3;
   --color-gray-200: #d4d4d4;
   --color-gray-100: #e5e5e5;
+  
+  /* Semantic Colors (shadcn-style) */
+  --color-background: #050505;
+  --color-foreground: #e5e5e5;
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #a3a3a3;
+  --color-card: #111111;
+  --color-card-foreground: #e5e5e5;
+  --color-border: #252525;
+  --color-input: #1a1a1a;
+  --color-primary: #00d4aa;
+  --color-primary-foreground: #050505;
+  --color-secondary: #1a1a1a;
+  --color-secondary-foreground: #e5e5e5;
   
   /* Electric Teal accent */
   --color-accent: #00d4aa;
@@ -33,7 +47,7 @@
 
 @font-face {
   font-family: 'Instrument Serif';
-  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/jizBRFtNs2ka5fXjeivQ4LroWlx-2zIZj1bIkNo.woff2') format('woff2');
+  src: url('https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjg.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -41,7 +55,7 @@
 
 @font-face {
   font-family: 'Instrument Serif';
-  src: url('https://fonts.gstatic.com/s/instrumentserif/v4/jizHRFtNs2ka5fXjeivQ4LroWlx-6zATi3TNgNq55w.woff2') format('woff2');
+  src: url('https://fonts.gstatic.com/s/instrumentserif/v5/jizHRFtNs2ka5fXjeivQ4LroWlx-6zAjjH7M.woff2') format('woff2');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -566,4 +580,99 @@ body::before {
       0 0 0 6px var(--color-accent),
       0 0 20px var(--color-accent-glow);
   }
+}
+
+/* ===== RADIX UI ANIMATIONS ===== */
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes zoom-in-95 {
+  from { transform: scale(0.95); }
+  to { transform: scale(1); }
+}
+
+@keyframes zoom-out-95 {
+  from { transform: scale(1); }
+  to { transform: scale(0.95); }
+}
+
+@keyframes slide-in-from-top-2 {
+  from { transform: translateY(-8px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-in-from-bottom-2 {
+  from { transform: translateY(8px); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slide-in-from-left-2 {
+  from { transform: translateX(-8px); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-in-from-right-2 {
+  from { transform: translateX(8px); }
+  to { transform: translateX(0); }
+}
+
+.animate-in {
+  animation-duration: 150ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+
+.animate-out {
+  animation-duration: 100ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+
+.fade-in-0 {
+  animation-name: fade-in;
+}
+
+.fade-out-0 {
+  animation-name: fade-out;
+}
+
+.zoom-in-95 {
+  animation-name: zoom-in-95;
+}
+
+.zoom-out-95 {
+  animation-name: zoom-out-95;
+}
+
+.slide-in-from-top-2 {
+  animation-name: slide-in-from-top-2;
+}
+
+.slide-in-from-bottom-2 {
+  animation-name: slide-in-from-bottom-2;
+}
+
+.slide-in-from-left-2 {
+  animation-name: slide-in-from-left-2;
+}
+
+.slide-in-from-right-2 {
+  animation-name: slide-in-from-right-2;
+}
+
+/* Combine multiple animations */
+.animate-in.fade-in-0.zoom-in-95 {
+  animation-name: fade-in, zoom-in-95;
+}
+
+.animate-out.fade-out-0.zoom-out-95 {
+  animation-name: fade-out, zoom-out-95;
 }

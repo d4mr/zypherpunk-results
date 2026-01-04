@@ -1,10 +1,12 @@
 ---
+import { getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import { Hero } from '../components/Hero';
 import { ProjectGrid } from '../components/ProjectGrid';
 import { getAllProjects, getMeta, type ProjectWithAwards } from '../lib/awards';
-import { fetchProjects, extractSlugFromUrl, type Project } from '../lib/devfolio';
+import { fetchProjects, extractSlugFromUrl, getImageUrl, type Project } from '../lib/devfolio';
 
 // Get all award data
 const allAwards = getAllProjects();
@@ -35,6 +37,49 @@ for (const award of allAwards) {
 
 // Sort by total USD descending (default)
 projectsWithDevfolio.sort((a, b) => (b.awards.totalUSD || 0) - (a.awards.totalUSD || 0));
+
+// Pre-optimize images at build time
+async function optimizeImage(url: string | null, width: number, height: number): Promise<string | null> {
+  if (!url) return null;
+  const fullUrl = getImageUrl(url);
+  if (!fullUrl) return null;
+  
+  const img = await getImage({
+    src: fullUrl,
+    width,
+    height,
+    format: 'webp',
+  });
+  return img.src;
+}
+
+const optimizedProjects = await Promise.all(
+  projectsWithDevfolio.map(async ({ devfolio, awards }) => {
+    // Optimize cover and favicon
+    const [optimizedCover, optimizedFavicon] = await Promise.all([
+      optimizeImage(devfolio._cover_img, 400, 225),
+      optimizeImage(devfolio._favicon, 80, 80),
+    ]);
+    
+    // Optimize builder avatars
+    const optimizedBuilders = await Promise.all(
+      (devfolio.builders || []).map(async (builder) => ({
+        ...builder,
+        _optimizedAvatar: await optimizeImage(builder._profile_image, 48, 48),
+      }))
+    );
+    
+    return {
+      devfolio: {
+        ...devfolio,
+        _optimizedCover: optimizedCover,
+        _optimizedFavicon: optimizedFavicon,
+        builders: optimizedBuilders,
+      },
+      awards,
+    };
+  })
+);
 ---
 
 <Layout title="Zypherpunk Hackathon Winners">
@@ -55,28 +100,9 @@ projectsWithDevfolio.sort((a, b) => (b.awards.totalUSD || 0) - (a.awards.totalUS
         </h2>
       </div>
       
-      <ProjectGrid client:load projects={projectsWithDevfolio} />
+      <ProjectGrid client:load projects={optimizedProjects} />
     </section>
   </main>
   
-  <footer class="border-t border-gray-800 py-12">
-    <div class="mx-auto max-w-7xl px-6">
-      <!-- Disclaimer -->
-      <div class="mb-8 rounded-lg border border-gray-800 bg-gray-900/50 px-4 py-3 text-center">
-        <p class="text-xs leading-relaxed text-gray-500">
-          This is an unofficial community archive. Not affiliated with <a href="https://zypherpunk.xyz" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">zypherpunk.xyz</a>, the hackathon organisers, or any sponsors.<br class="hidden sm:inline" />
-          Data compiled from winner announcements in the official Discord server.
-        </p>
-      </div>
-      
-      <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <p class="text-sm text-gray-500">
-          Project data from <a href="https://devfolio.co" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">Devfolio</a>
-        </p>
-        <p class="text-sm text-gray-500">
-          Made by <a href="https://d4mr.com" target="_blank" rel="noopener" class="text-gray-400 hover:text-white transition-colors">d4mr</a>
-        </p>
-      </div>
-    </div>
-  </footer>
+  <Footer />
 </Layout>

@@ -40,6 +40,8 @@ export interface Builder {
   last_name: string | null;
   username: string;
   _profile_image: string | null;
+  // Pre-optimized avatar URL (set at build time for homepage)
+  _optimizedAvatar?: string | null;
 }
 
 export interface Hashtag {
@@ -69,6 +71,9 @@ export interface Project {
   created_at: string;
   builders: Builder[];
   hashtags: Hashtag[];
+  // Pre-optimized image URLs (set at build time for homepage)
+  _optimizedCover?: string | null;
+  _optimizedFavicon?: string | null;
 }
 
 /**

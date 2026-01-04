@@ -104,7 +104,7 @@ export function Hero({ totalProjects, totalAwards, totalUSD }: Props) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display text-4xl leading-[1.1] text-gray-500 sm:text-5xl md:text-7xl lg:text-8xl"
+            className="font-display text-4xl leading-[1.1] text-muted-foreground sm:text-5xl md:text-7xl lg:text-8xl"
           >
             Winners
           </motion.h1>
@@ -133,7 +133,7 @@ export function Hero({ totalProjects, totalAwards, totalUSD }: Props) {
             <div className="font-mono text-2xl font-bold text-white sm:text-3xl md:text-4xl">
               <span data-value={totalProjects}>0</span>
             </div>
-            <div className="mt-1 text-xs text-gray-500 sm:text-sm">
+            <div className="mt-1 text-xs text-muted-foreground sm:text-sm">
               Projects
             </div>
           </div>
@@ -142,7 +142,7 @@ export function Hero({ totalProjects, totalAwards, totalUSD }: Props) {
             <div className="font-mono text-2xl font-bold text-white sm:text-3xl md:text-4xl">
               <span data-value={totalAwards}>0</span>
             </div>
-            <div className="mt-1 text-xs text-gray-500 sm:text-sm">
+            <div className="mt-1 text-xs text-muted-foreground sm:text-sm">
               Awards
             </div>
           </div>
@@ -151,7 +151,7 @@ export function Hero({ totalProjects, totalAwards, totalUSD }: Props) {
             <div className="font-mono text-2xl font-bold text-gold sm:text-3xl md:text-4xl">
               $<span data-value={totalUSD}>0</span>
             </div>
-            <div className="mt-1 text-xs text-gray-500 sm:text-sm">
+            <div className="mt-1 text-xs text-muted-foreground sm:text-sm">
               Distributed
             </div>
           </div>
@@ -167,7 +167,7 @@ export function Hero({ totalProjects, totalAwards, totalUSD }: Props) {
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2 text-gray-600"
+            className="flex flex-col items-center gap-2 text-muted-foreground"
           >
             <span className="text-xs uppercase tracking-widest">Scroll</span>
             <svg className="h-4 w-4" viewBox="0 0 16 16" fill="none">
