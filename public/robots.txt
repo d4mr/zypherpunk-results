@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zypherpunk.d4mr.com/sitemap-index.xml

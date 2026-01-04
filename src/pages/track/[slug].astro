@@ -31,7 +31,7 @@ interface Props {
   trackSlug: string;
 }
 
-const { track } = Astro.props;
+const { track, trackSlug } = Astro.props;
 
 // Get projects that won in this track
 const winningProjectsData = getProjectsByTrack(track);
@@ -176,7 +176,7 @@ const trackColors: Record<string, string> = {
 const trackColor = trackColors[track] || "gray";
 ---
 
-<Layout title={`${track} - Zypherpunk Track`} description={`Winning projects in the ${track} track at Zypherpunk Hackathon`}>
+<Layout title={`${track} - Zypherpunk Track`} description={`Winning projects in the ${track} track at Zypherpunk Hackathon`} image={`/og/track/${trackSlug}.png`}>
   <Header />
   
   <main class="mx-auto max-w-7xl px-5 py-8 sm:px-6 sm:py-12">
