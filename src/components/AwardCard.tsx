@@ -1,5 +1,4 @@
 import * as Popover from "@radix-ui/react-popover";
-import { useState, useEffect } from "react";
 
 interface SponsorBounty {
   track: string;
@@ -31,12 +30,6 @@ interface AwardCardProps {
 
 export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: AwardCardProps) {
   const hasPopover = !!sponsorData;
-  const [isOpen, setIsOpen] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  useEffect(() => {
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
-  }, []);
 
   const cardContent = (
     <div
@@ -47,8 +40,6 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
           : "border-gray-800 bg-gray-900/50"
         }
       `}
-      onMouseEnter={() => !isTouchDevice && setIsOpen(true)}
-      onMouseLeave={() => !isTouchDevice && setIsOpen(false)}
     >
       <div className="flex items-center gap-3">
         {sponsorData && (
@@ -94,7 +85,7 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
   }
 
   return (
-    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
+    <Popover.Root>
       <Popover.Trigger asChild>
         {cardContent}
       </Popover.Trigger>
@@ -105,14 +96,6 @@ export function AwardCard({ sponsor, track, amount, sponsorData, bountyData }: A
           side="top"
           align="center"
           collisionPadding={16}
-          onMouseEnter={() => !isTouchDevice && setIsOpen(true)}
-          onMouseLeave={() => !isTouchDevice && setIsOpen(false)}
-          onPointerDownOutside={(e) => {
-            // On touch, allow clicking outside to close
-            if (isTouchDevice) return;
-            // On desktop, prevent closing when mouse leaves
-            e.preventDefault();
-          }}
         >
           <a 
             href={`/sponsor/${sponsorData.id}`}
