@@ -1,8 +1,8 @@
 {
   "meta": {
-    "totalProjects": 88,
-    "totalAwards": 140,
-    "totalUSD": 219000
+    "totalProjects": 93,
+    "totalAwards": 152,
+    "totalUSD": 244000
   },
   "projects": [
     {
@@ -270,9 +270,13 @@
           "sponsor": "Tachyon",
           "track": "Zcash Data & Analytics",
           "amount": "$1500"
+        },
+        {
+          "sponsor": "Gemini",
+          "amount": "$3000"
         }
       ],
-      "totalUSD": 6000,
+      "totalUSD": 9000,
       "otherPrizes": []
     },
     {
@@ -727,9 +731,14 @@
           "sponsor": "Tachyon",
           "track": "Privacy-Preserving AI & Computation",
           "amount": "$1500"
+        },
+        {
+          "sponsor": "Axelar",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$2500"
         }
       ],
-      "totalUSD": 1500,
+      "totalUSD": 4000,
       "otherPrizes": []
     },
     {
@@ -788,9 +797,14 @@
           "sponsor": "Tachyon",
           "track": "Privacy-Preserving AI & Computation",
           "amount": "$1000"
+        },
+        {
+          "sponsor": "Axelar",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$2500"
         }
       ],
-      "totalUSD": 1000,
+      "totalUSD": 3500,
       "otherPrizes": [
         "15,000 NIL"
       ]
@@ -807,9 +821,13 @@
           "sponsor": "Tachyon",
           "track": "Zcash Data & Analytics",
           "amount": "$1000"
+        },
+        {
+          "sponsor": "Gemini",
+          "amount": "$2000"
         }
       ],
-      "totalUSD": 2500,
+      "totalUSD": 4500,
       "otherPrizes": []
     },
     {
@@ -1348,9 +1366,14 @@
           "sponsor": "Nillion",
           "track": "Zcash Data & Analytics",
           "amount": "5,000 NIL"
+        },
+        {
+          "sponsor": "Axelar",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$1000"
         }
       ],
-      "totalUSD": 0,
+      "totalUSD": 1000,
       "otherPrizes": [
         "5,000 NIL"
       ]
@@ -1369,6 +1392,71 @@
         }
       ],
       "totalUSD": 6500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Caution",
+      "url": "https://devfolio.co/projects/caution-platform-248a",
+      "awards": [
+        {
+          "sponsor": "Axelar",
+          "track": "Privacy-Preserving AI & Computation",
+          "amount": "$4000"
+        }
+      ],
+      "totalUSD": 4000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Zypher Trade",
+      "url": "https://devfolio.co/projects/zypher-trade-f540",
+      "awards": [
+        {
+          "sponsor": "Axelar",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$4000"
+        }
+      ],
+      "totalUSD": 4000,
+      "otherPrizes": []
+    },
+    {
+      "name": "Shadow Mesh",
+      "url": "https://devfolio.co/projects/veil-8c33",
+      "awards": [
+        {
+          "sponsor": "Axelar",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$2500"
+        }
+      ],
+      "totalUSD": 2500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Cipher",
+      "url": "https://devfolio.co/projects/cipher-981d",
+      "awards": [
+        {
+          "sponsor": "Axelar",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$2500"
+        }
+      ],
+      "totalUSD": 2500,
+      "otherPrizes": []
+    },
+    {
+      "name": "Overpay",
+      "url": "https://devfolio.co/projects/overpaycom-99ce",
+      "awards": [
+        {
+          "sponsor": "Axelar",
+          "track": "Cross-Chain Privacy Solutions",
+          "amount": "$1000"
+        }
+      ],
+      "totalUSD": 1000,
       "otherPrizes": []
     }
   ]
